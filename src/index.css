@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Barlow', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* ─── Navbar transition ─────────────────────────────────────── */
+.navbar-transparent {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.navbar-solid {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Hero wave clip ────────────────────────────────────────── */
+.hero-wave {
+  clip-path: ellipse(110% 100% at 50% 0%);
+}
+
+/* ─── Dot bokeh particles ───────────────────────────────────── */
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0px) scale(1);   opacity: 0.85; }
+  50%       { transform: translateY(-12px) scale(1.1); opacity: 1;    }
+}
+
+.dot {
+  position: absolute;
+  border-radius: 9999px;
+  animation: floatDot ease-in-out infinite;
+}
+
+/* ─── CTA button ────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: #d32f2f;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(211, 47, 47, 0.45);
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: #d32f2f;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  cursor: pointer;
+  border: 1px solid #d32f2f;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: #d32f2f;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(211, 47, 47, 0.45);
+}
+
+/* ─── Blob pulse ────────────────────────────────────────────── */
+@keyframes blobPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.9; }
+  50%       { transform: scale(1.04); opacity: 1;   }
+}
+
+.blob-animate {
+  animation: blobPulse 6s ease-in-out infinite;
+}
