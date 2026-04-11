@@ -56,7 +56,7 @@ export default function Footer() {
         style={{ top: 0, right: 0, width: '28%', maxWidth: 360, zIndex: 1 }}
         aria-hidden="true"
       >
-        <img src="/assets/blob-footer.png" alt="" className="w-full h-auto" />
+        <img src="/assets/new-footer.png" alt="" className="w-full h-auto" />
       </div>
 
       {/* ── Content ── */}

@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 // ─── Nav link data ────────────────────────────────────────────────────────────
+// 5 links on each side — tighter spacing applied throughout
 const LEFT_LINKS = [
-  { label: 'Home',         href: '/', dropdown: ['Overview', 'Team', 'Careers'] },
-  { label: 'Case Studies', href: '#', dropdown: ['Finance', 'Healthcare', 'Technology'] },
+  { label: 'Home',         href: '/',            dropdown: null },
+  { label: 'Who We Are',   href: '/about',       dropdown: null },
+  { label: 'Our Purpose',  href: '/purpose',     dropdown: null },
+  { label: 'The Challenge',href: '/challenge',   dropdown: null },
+  { label: 'Leadership',   href: '/leadership',  dropdown: null },
 ]
 
 const RIGHT_LINKS = [
-  { label: 'Services', href: '/services', dropdown: ['Consulting', 'Marketing', 'Development'] },
-  { label: 'Blog',     href: '/blog', dropdown: ['Latest Posts', 'Industry News'] },
-  { label: 'Contact',  href: '/contact', dropdown: null },
+  { label: 'Products', href: '/services', dropdown: null },
+  { label: 'Our Core',     href: '/blog',     dropdown: null },
+  { label: 'Values',  href: '/contact',  dropdown: null },
+  { label: 'Our Founders', href: '/careers',  dropdown: null },
+  { label: 'Contact Us', href: '/contact',  dropdown: null },
 ]
 
 // ─── Dropdown ─────────────────────────────────────────────────────────────────
@@ -48,24 +55,26 @@ function NavItem({ link, isScrolled }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <a
-        href={link.href}
+      <Link
+        to={link.href}
         className={`
-          flex items-center gap-[4px] text-[13px] font-medium tracking-[0.02em]
+          flex items-center gap-[3px] font-medium tracking-[0.01em]
           transition-colors duration-200 whitespace-nowrap select-none py-1
           ${isScrolled ? 'text-gray-700 hover:text-red-600' : 'text-white/90 hover:text-white'}
         `}
+        // Slightly smaller font when there are many links
+        style={{ fontSize: '14px' }}
       >
         {link.label}
         {link.dropdown && (
           <svg
-            className={`w-[9px] h-[9px] mt-[1px] transition-transform duration-200 opacity-50 ${open ? 'rotate-180' : ''}`}
+            className={`w-[8px] h-[8px] mt-[1px] transition-transform duration-200 opacity-50 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.8}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         )}
-      </a>
+      </Link>
       <AnimatePresence>
         {link.dropdown && open && <Dropdown items={link.dropdown} />}
       </AnimatePresence>
@@ -128,7 +137,6 @@ function MobileMenu({ isOpen, onClose }) {
             transition={{ duration: 0.25 }}
             onClick={onClose}
           />
-
           <motion.div
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
@@ -141,7 +149,6 @@ function MobileMenu({ isOpen, onClose }) {
               className="absolute top-0 left-0 w-40 h-40 rounded-full pointer-events-none"
               style={{ background: 'rgba(180,20,20,0.55)', filter: 'blur(40px)', transform: 'translate(-30%, -30%)' }}
             />
-
             <button
               onClick={onClose}
               className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors"
@@ -151,12 +158,10 @@ function MobileMenu({ isOpen, onClose }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-
             <div className="px-8 pt-8 pb-10 relative z-10">
               <img src="/logo.png" alt="Edge Consultants" className="h-8 w-auto" />
             </div>
-
-            <nav className="relative z-10 flex-1 px-8">
+            <nav className="relative z-10 flex-1 px-8 overflow-y-auto">
               <ul className="space-y-1">
                 {all.map((link, i) => (
                   <motion.li
@@ -165,19 +170,18 @@ function MobileMenu({ isOpen, onClose }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.12 + i * 0.055, duration: 0.3, ease: 'easeOut' }}
                   >
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="flex items-center gap-2 py-3 text-[15px] font-medium text-white/75 hover:text-white border-b border-white/8 transition-colors group"
                       onClick={onClose}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                       {link.label}
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
             </nav>
-
             <motion.div
               className="relative z-10 px-8 py-8 mt-auto"
               initial={{ opacity: 0 }}
@@ -185,10 +189,7 @@ function MobileMenu({ isOpen, onClose }) {
               transition={{ delay: 0.45 }}
             >
               <p className="text-[10px] text-white/40 uppercase tracking-[0.22em] mb-1">Call Us</p>
-              <a
-                href="tel:+123456789"
-                className="text-lg font-bold text-white hover:text-red-400 transition-colors"
-              >
+              <a href="tel:+123456789" className="text-lg font-bold text-white hover:text-red-400 transition-colors">
                 +123 456 789
               </a>
             </motion.div>
@@ -227,49 +228,56 @@ export default function Navbar() {
       >
         <div
           className="relative w-full h-[72px] flex items-center"
-          style={{ paddingLeft: '1.25rem', paddingRight: '1.25rem' }}
+          style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
         >
-
-          {/* ── FAR LEFT: Hamburger — always pinned ── */}
+          {/* FAR LEFT: Hamburger */}
           <HamburgerButton
             onClick={() => setMobileOpen(true)}
             isScrolled={isScrolled}
             isOpen={mobileOpen}
           />
 
-          {/* ── CENTER LOGO — absolute, always perfectly centered ── */}
-          <a
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 flex-shrink-0 z-10 px-5"
-            aria-label="Edge Consultants home"
+          {/* CENTER LOGO */}
+          <Link
+            to="/"
+            className="absolute left-1/2 -translate-x-1/2 flex-shrink-0 z-10"
+            aria-label="home"
           >
             <img
               src="/logo.png"
               alt="Edge Consultants"
-              className="h-10 w-auto object-contain mr-10"
+              className="h-10 w-auto object-contain"
               style={{
                 filter: isScrolled ? 'brightness(0)' : 'none',
                 transition: 'filter 0.4s ease',
               }}
             />
-          </a>
+          </Link>
 
-          {/* ── NAV LINKS — absolute layer, distributed symmetrically around logo ── */}
-          <div className="hidden lg:flex absolute inset-0 items-center justify-center pointer-events-none">
-            <div className="flex items-center gap-6 pointer-events-auto">
+          {/* NAV LINKS — centered around the absolutely-positioned logo.
+              The outer div is inset-0 so it spans the full header width.
+              We justify-center the inner group so it's viewport-centered,
+              then use the spacer to "punch a hole" exactly where the logo sits.
+              Tune w-[Xpx] on the spacer until links stop overlapping the logo.
+          */}
+          <div className="hidden xl:flex absolute inset-0 items-center justify-center pointer-events-none">
+            <div className="flex items-center gap-3 pointer-events-auto">
 
-              {/* Left links */}
-              <ul className="flex items-center gap-6">
+              <ul className="flex items-center gap-7">
                 {LEFT_LINKS.map((link) => (
                   <NavItem key={link.label} link={link} isScrolled={isScrolled} />
                 ))}
               </ul>
 
-              {/* Spacer matching logo width — keeps links symmetrical around it */}
-              <div className="w-[80px] flex-shrink-0" />
+              {/*
+                Spacer = logo rendered width + 2×padding on each side.
+                Your logo at h-10 is roughly 130px wide.
+                Add ~20px breathing room each side → 170px total.
+                Increase if links still overlap, decrease if gap is too large.
+              */}
+              <div className="w-[170px] flex-shrink-0" />
 
-              {/* Right links */}
-              <ul className="flex items-center gap-6">
+              <ul className="flex items-center gap-7">
                 {RIGHT_LINKS.map((link) => (
                   <NavItem key={link.label} link={link} isScrolled={isScrolled} />
                 ))}
@@ -278,14 +286,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* ── FAR RIGHT: Call Us — always pinned ── */}
-          <div className="hidden lg:flex items-center gap-2.5 ml-auto flex-shrink-0">
-
+          {/* FAR RIGHT: Call Us */}
+          <div className="hidden xl:flex items-center gap-2.5 ml-auto flex-shrink-0">
             <div
               className="flex-shrink-0 h-[18px] w-px"
               style={{ background: isScrolled ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.18)' }}
             />
-
             <svg
               width="34" height="30" viewBox="0 0 34 30" fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -293,15 +299,8 @@ export default function Navbar() {
             >
               <rect x="9" y="1" width="23" height="15" rx="3" stroke="currentColor" strokeWidth="1.8" />
               <rect x="2" y="8" width="22" height="15" rx="3" stroke="currentColor" strokeWidth="1.8" />
-              <path
-                d="M5 23 L2.5 29 L10 23Z"
-                fill="currentColor"
-                stroke="currentColor"
-                strokeWidth="0.5"
-                strokeLinejoin="round"
-              />
+              <path d="M5 23 L2.5 29 L10 23Z" fill="currentColor" stroke="currentColor" strokeWidth="0.5" strokeLinejoin="round" />
             </svg>
-
             <div className="leading-[1.25]">
               <p className={`text-[9.5px] font-bold uppercase tracking-[0.22em] ${isScrolled ? 'text-gray-400' : 'text-white/55'}`}>
                 Call Us
@@ -313,7 +312,6 @@ export default function Navbar() {
                 +123 456 789
               </a>
             </div>
-
           </div>
 
         </div>

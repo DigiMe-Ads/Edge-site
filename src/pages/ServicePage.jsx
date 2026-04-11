@@ -1,6 +1,8 @@
 import Navbar from '../components/common/Navbar'
 import CommonHero from '../components/common/Hero'
 import ServicesSection from '../components/home/ServiceSection'
+import ServicesListSection from '../components/services/ServicesListSection'
+import AboutDetailSection from '../components/about/AboutDetail'
 import TimelineSection from '../components/services/TimeLineSection'
 import Footer from '../components/common/Footer'
 
@@ -13,6 +15,8 @@ export default function ServicePage() {
       {/* ── Sections ── */}
       <CommonHero title="Our Services" />
         <ServicesSection />
+        <ServicesListSection />
+        <AboutDetailSection />
         <TimelineSection />
     <Footer />
     </main>
