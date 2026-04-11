@@ -1,9 +1,9 @@
 import Navbar from '../components/common/Navbar'
 import CommonHero from '../components/common/Hero'
 import PeopleDifferentiatorSection from '../components/about/PeopleDifferenceSection'
-import WhyStrategyFailsSection from '../components/about/WhyStrategyFailsSection'
-import EcosystemSection from '../components/about/EcoSystemSection'
-import OurPurposeSection from '../components/about/OurPurposeSection'
+import WhyStrategyFailsSection from '../components/challenge/WhyStrategyFailsSection'
+import EcosystemSection from '../components/producs/EcoSystemSection'
+import OurPurposeSection from '../components/purpose/OurPurposeSection'
 import WhoWeAreSection from '../components/about/WhoWeAreSection'
 import AboutDetailSection from '../components/about/AboutDetail'
 import TimelineSection from '../components/services/TimeLineSection'
@@ -21,7 +21,7 @@ export default function AboutPage() {
       {/* ── Sections ── */}
       <CommonHero title="About Us" />
         <PeopleDifferentiatorSection />
-        <OurPurposeSection />
+        {/* <OurPurposeSection />
         <WhyStrategyFailsSection />
         <EcosystemSection />
         <WhoWeAreSection />
@@ -29,7 +29,7 @@ export default function AboutPage() {
         <TimelineSection />
         <ProvideServicesSection />
         <TeamSection />
-        <TestimonialsSection />
+        <TestimonialsSection /> */}
     <Footer />
     </main>
   )

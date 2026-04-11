@@ -14,9 +14,9 @@ const LEFT_LINKS = [
 
 const RIGHT_LINKS = [
   { label: 'Products', href: '/services', dropdown: null },
-  { label: 'Our Core',     href: '/blog',     dropdown: null },
-  { label: 'Values',  href: '/contact',  dropdown: null },
-  { label: 'Our Founders', href: '/careers',  dropdown: null },
+  { label: 'Our Core',     href: '/our-core',     dropdown: null },
+  { label: 'Values',  href: '/values',  dropdown: null },
+  { label: 'Our Founders', href: '/founders',  dropdown: null },
   { label: 'Contact Us', href: '/contact',  dropdown: null },
 ]
 
@@ -275,7 +275,7 @@ export default function Navbar() {
                 Add ~20px breathing room each side → 170px total.
                 Increase if links still overlap, decrease if gap is too large.
               */}
-              <div className="w-[170px] flex-shrink-0" />
+              <div className="w-[160px] flex-shrink-0" />
 
               <ul className="flex items-center gap-7">
                 {RIGHT_LINKS.map((link) => (

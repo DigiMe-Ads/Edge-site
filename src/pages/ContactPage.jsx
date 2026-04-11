@@ -1,6 +1,7 @@
 import Navbar from '../components/common/Navbar'
 import CommonHero from '../components/common/Hero'
 import ContactSection from '../components/contact/ContactSection'
+import ConsultationSection from '../components/contact/ConsultationSection'
 import Footer from '../components/common/Footer'
 
 export default function ContactPage() {
@@ -11,7 +12,7 @@ export default function ContactPage() {
 
       {/* ── Sections ── */}
       <CommonHero title="Contact Us" />
-        <ContactSection />
+        <ConsultationSection />
     <Footer />
     </main>
   )
