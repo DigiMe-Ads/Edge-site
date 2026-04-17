@@ -22,7 +22,7 @@ export default function HomePage() {
         <ServicesSection />
         <FAQSection />
         <StatsSection />
-        <TeamSection />
+        {/* <TeamSection /> */}
         <CtaBannerSection />
         <TestimonialsSection />
         <BlogSection />

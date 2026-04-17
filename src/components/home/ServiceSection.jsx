@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-// ─── Card data — all identical white cards, no ghost ─────────────────────────
+// ─── Card data ────────────────────────────────────────────────────────────────
 const ROW1 = [
   { num: '01', title: 'Mobile\nDevelopment',  icon: <MobileIcon />    },
   { num: '02', title: 'UI/UX\nDesign',        icon: <UxIcon />        },
@@ -12,12 +12,15 @@ const ROW2 = [
   { num: '05', title: 'Process\nDevelopment', icon: <GearIcon />      },
   { num: '06', title: 'UI/UI\nDesign',        icon: <DiamondIcon />   },
   { num: '07', title: 'Mobile\nDevelopment',  icon: <MobileIcon />    },
-  { num: '04', title: 'Digital\nMarketing',   icon: <MegaphoneIcon /> },
+  { num: '08', title: 'Digital\nMarketing',   icon: <MegaphoneIcon /> },
 ]
 
-// ─── Card component — single unified white card ───────────────────────────────
-const CARD_HEIGHT = 200 // px — fixed so all cards are identical height
+// All 8 cards flattened — used for mobile/tablet simple grid
+const ALL_CARDS = [...ROW1, ...ROW2]
 
+const CARD_HEIGHT = 200
+
+// ─── Card component ───────────────────────────────────────────────────────────
 function ServiceCard({ data, delay }) {
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
@@ -25,8 +28,8 @@ function ServiceCard({ data, delay }) {
   return (
     <motion.div
       ref={ref}
-      className="bg-white rounded-sm flex flex-col justify-between p-6 group cursor-pointer
-                 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden"
+      className="bg-white rounded-sm flex flex-col justify-between p-5 sm:p-6 group cursor-pointer
+                 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden w-full"
       style={{ height: CARD_HEIGHT }}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -36,19 +39,16 @@ function ServiceCard({ data, delay }) {
       <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-red-600
                       scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-300" />
 
-      {/* Number */}
       <p className="font-display font-bold text-gray-200 leading-none select-none"
          style={{ fontSize: '1.7rem' }}>
         {data.num}
       </p>
 
-      {/* Title */}
       <h3 className="font-display font-bold text-gray-900 leading-snug"
           style={{ fontSize: '0.92rem', whiteSpace: 'pre-line' }}>
         {data.title}
       </h3>
 
-      {/* Footer: SEE DETAILS + icon */}
       <div className="flex items-end justify-between gap-2">
         <a href="#"
            className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.18em]
@@ -59,7 +59,7 @@ function ServiceCard({ data, delay }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
-        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+        <div className="w-11 h-11 flex items-center justify-center flex-shrink-0">
           {data.icon}
         </div>
       </div>
@@ -75,30 +75,21 @@ export default function ServicesSection() {
   return (
     <section className="relative w-full bg-white">
 
-      {/* ══ TOP WAVE: white bg with grey shape rising from below ══
-          The SVG sits on a white background. The grey fill rises up from
-          the bottom of the SVG, creating the gentle single-hill swerve. */}
+      {/* ── Top wave ── */}
       <div className="w-full leading-[0]" style={{ marginBottom: -1 }}>
-        <svg
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          className="w-full block"
-          style={{ height: 'clamp(55px, 7vw, 100px)' }}
-        >
-          {/* Grey shape fills from the bottom, curving gently upward */}
-          <path
-            d="M0,100 L0,72 C180,30 360,85 540,60 C720,35 900,75 1080,52 C1220,34 1340,65 1440,55 L1440,100 Z"
-            fill="#f1f1f3"
-          />
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none"
+             className="w-full block" style={{ height: 'clamp(40px, 7vw, 100px)' }}>
+          <path d="M0,100 L0,72 C180,30 360,85 540,60 C720,35 900,75 1080,52 C1220,34 1340,65 1440,55 L1440,100 Z"
+                fill="#f1f1f3" />
         </svg>
       </div>
 
-      {/* ══ GREY BODY ══ */}
+      {/* ── Grey body ── */}
       <div className="relative" style={{ background: '#f1f1f3' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 xl:px-16 pt-6 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 pt-6 pb-16">
 
           {/* ── Header ── */}
-          <div ref={headRef} className="relative z-10 mb-10" style={{ maxWidth: 380 }}>
+          <div ref={headRef} className="relative z-10 mb-8 sm:mb-10">
             <motion.p
               className="text-[10px] font-bold uppercase tracking-[0.24em] text-gray-400 mb-3"
               initial={{ opacity: 0, y: 14 }}
@@ -109,7 +100,7 @@ export default function ServicesSection() {
             </motion.p>
             <motion.h2
               className="font-display font-extrabold text-gray-900 leading-[1.1]"
-              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.1rem)' }}
+              style={{ fontSize: 'clamp(1.4rem, 4vw, 2.1rem)' }}
               initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.08 }}
@@ -118,88 +109,72 @@ export default function ServicesSection() {
             </motion.h2>
           </div>
 
-          {/* ── Card grid + blob (relative container) ──
-              Layout: 4 columns.
-              Odd columns (1,3) sit at normal vertical position.
-              Even columns (2,4) are offset DOWN by ~28px — alternating stagger.
-              Blob sits OVER the grid with z-index > cards and opacity 0.55.
-          ── */}
-          <div className="relative">
+          {/* ══════════════════════════════════════════════════
+              MOBILE + TABLET: simple responsive grid (no stagger)
+              Hidden on desktop (lg+)
+          ══════════════════════════════════════════════════ */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+            {ALL_CARDS.map((card, i) => (
+              <ServiceCard key={`m-${i}`} data={card} delay={0.04 * i} />
+            ))}
+          </div>
 
-            {/* Blob — z-index above cards, reduced opacity, overlaps col3→col4 */}
+          {/* ══════════════════════════════════════════════════
+              DESKTOP: 4-column staggered layout with blob
+              Hidden on mobile/tablet
+          ══════════════════════════════════════════════════ */}
+          <div className="relative hidden lg:block">
+
+            {/* Blob */}
             <motion.div
               className="absolute pointer-events-none select-none"
-              style={{
-                right: '14%',
-                top: '-120px',
-                width: 'clamp(400px, 26%, 500px)',
-                zIndex: 10,
-                opacity: 0.72,
-              }}
+              style={{ right: '14%', top: '-120px', width: 'clamp(300px, 26%, 500px)', zIndex: 10, opacity: 0.72 }}
               initial={{ opacity: 0, scale: 0.88 }}
               animate={inView ? { opacity: 0.72, scale: 1 } : {}}
               transition={{ duration: 1.1, delay: 0.05 }}
             >
-              
-                
-                <img src="/assets/blob-services.png" alt="" className="w-full h-auto" />
-             
-              {/* <ServicesBlob /> */}
+              <img src="/assets/blob-services.png" alt="" className="w-full h-auto" />
             </motion.div>
 
-            {/* Grid — 4 equal columns */}
-            <div
-              className="grid gap-x-4"
-              style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}
-            >
-              {/* ── COL 1: row1 up, row2 down (starts at top) ── */}
-              <div className="flex flex-col gap-4">
-                {/* Row 1 card — sits higher */}
-                <div style={{ marginTop: 0 }}>
-                  <ServiceCard data={ROW1[0]} delay={0.05} />
-                </div>
-                {/* Row 2 card — sits lower, gap handled by flex */}
-                <div>
-                  <ServiceCard data={ROW2[0]} delay={0.12} />
-                </div>
+            {/* 4-column staggered grid */}
+            <div className="grid gap-x-4" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+
+              {/* Col 1 — top */}
+              <div className="flex flex-col gap-4" style={{ marginTop: 0 }}>
+                <ServiceCard data={ROW1[0]} delay={0.05} />
+                <ServiceCard data={ROW2[0]} delay={0.12} />
               </div>
 
-              {/* ── COL 2: offset down ── */}
+              {/* Col 2 — offset down */}
               <div className="flex flex-col gap-4" style={{ marginTop: 28 }}>
                 <ServiceCard data={ROW1[1]} delay={0.1} />
                 <ServiceCard data={ROW2[1]} delay={0.17} />
               </div>
 
-              {/* ── COL 3: same level as col 1 ── */}
+              {/* Col 3 — top */}
               <div className="flex flex-col gap-4" style={{ marginTop: 0 }}>
                 <ServiceCard data={ROW1[2]} delay={0.15} />
                 <ServiceCard data={ROW2[2]} delay={0.22} />
               </div>
 
-              {/* ── COL 4: ghost cards, offset down like col 2 ── */}
+              {/* Col 4 — offset down */}
               <div className="flex flex-col gap-4" style={{ marginTop: 28 }}>
                 <ServiceCard data={ROW1[3]} delay={0.2} />
                 <ServiceCard data={ROW2[3]} delay={0.27} />
               </div>
-            </div>
 
+            </div>
           </div>
 
         </div>
       </div>
 
-      {/* ══ BOTTOM WAVE: grey shape tapering away, white below ══ */}
+      {/* ── Bottom wave ── */}
       <div className="w-full leading-[0]" style={{ marginTop: -1 }}>
-        <svg
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          className="w-full block"
-          style={{ height: 'clamp(55px, 7vw, 100px)' }}
-        >
-          <path
-            d="M0,0 L0,48 C200,78 420,22 660,55 C880,82 1100,30 1300,58 C1360,65 1400,60 1440,42 L1440,0 Z"
-            fill="#f1f1f3"
-          />
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none"
+             className="w-full block" style={{ height: 'clamp(40px, 7vw, 100px)' }}>
+          <path d="M0,0 L0,48 C200,78 420,22 660,55 C880,82 1100,30 1300,58 C1360,65 1400,60 1440,42 L1440,0 Z"
+                fill="#f1f1f3" />
         </svg>
       </div>
 
@@ -207,44 +182,12 @@ export default function ServicesSection() {
   )
 }
 
-// ─── Services blob SVG placeholder ───────────────────────────────────────────
-function ServicesBlob() {
-  return (
-    <svg viewBox="0 0 320 290" fill="none" xmlns="http://www.w3.org/2000/svg"
-         className="w-full h-auto">
-      <defs>
-        <radialGradient id="sg1" cx="38%" cy="32%" r="62%" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="rgba(235,130,100,0.72)" />
-          <stop offset="45%"  stopColor="rgba(220,100,80,0.42)" />
-          <stop offset="100%" stopColor="rgba(210,170,155,0.06)" />
-        </radialGradient>
-        <radialGradient id="sg2" cx="60%" cy="65%" r="50%" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="rgba(240,200,180,0.55)" />
-          <stop offset="100%" stopColor="rgba(235,180,160,0.04)" />
-        </radialGradient>
-      </defs>
-      {/* Outer soft shape */}
-      <path
-        d="M155 8 C230 0 315 52 308 148 C301 242 228 292 148 285 C68 278 0 218 5 138 C10 58 80 16 155 8Z"
-        fill="url(#sg1)"
-      />
-      {/* Inner lighter shape */}
-      <path
-        d="M165 35 C225 28 295 72 288 155 C281 236 215 278 148 272 C81 266 25 212 30 148 C35 84 105 42 165 35Z"
-        fill="url(#sg2)"
-      />
-    </svg>
-  )
-}
-
 // ─── Icon SVGs ────────────────────────────────────────────────────────────────
-function GradSVG({ id, children, size = 52 }) {
+function GradSVG({ id, children, size = 48 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 52 52"
-         fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id={id} x1="2" y1="2" x2="50" y2="50"
-                        gradientUnits="userSpaceOnUse">
+        <linearGradient id={id} x1="2" y1="2" x2="50" y2="50" gradientUnits="userSpaceOnUse">
           <stop stopColor="#d32f2f" />
           <stop offset="1" stopColor="#f57c00" />
         </linearGradient>
@@ -257,12 +200,9 @@ function GradSVG({ id, children, size = 52 }) {
 function MobileIcon() {
   return (
     <GradSVG id="ic-mob">
-      <rect x="15" y="4" width="22" height="38" rx="3.5"
-            stroke="url(#ic-mob)" strokeWidth="2" />
-      <line x1="21" y1="38" x2="31" y2="38"
-            stroke="url(#ic-mob)" strokeWidth="2" strokeLinecap="round" />
-      <rect x="20" y="11" width="12" height="18" rx="1.5"
-            stroke="url(#ic-mob)" strokeWidth="1.5" />
+      <rect x="15" y="4" width="22" height="38" rx="3.5" stroke="url(#ic-mob)" strokeWidth="2" />
+      <line x1="21" y1="38" x2="31" y2="38" stroke="url(#ic-mob)" strokeWidth="2" strokeLinecap="round" />
+      <rect x="20" y="11" width="12" height="18" rx="1.5" stroke="url(#ic-mob)" strokeWidth="1.5" />
     </GradSVG>
   )
 }
@@ -275,8 +215,6 @@ function UxIcon() {
       <line x1="26" y1="36" x2="26" y2="48" stroke="url(#ic-ux)" strokeWidth="2" strokeLinecap="round" />
       <line x1="4"  y1="26" x2="16" y2="26" stroke="url(#ic-ux)" strokeWidth="2" strokeLinecap="round" />
       <line x1="36" y1="26" x2="48" y2="26" stroke="url(#ic-ux)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="10" y1="10" x2="18" y2="18" stroke="url(#ic-ux)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="34" y1="34" x2="42" y2="42" stroke="url(#ic-ux)" strokeWidth="1.5" strokeLinecap="round" />
     </GradSVG>
   )
 }
@@ -284,12 +222,9 @@ function UxIcon() {
 function MegaphoneIcon() {
   return (
     <GradSVG id="ic-mega">
-      <path d="M8 20 L8 32 L17 32 L17 20Z"
-            stroke="url(#ic-mega)" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M17 15 L42 8 L42 40 L17 33Z"
-            stroke="url(#ic-mega)" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M17 33 L15 44 L21 44 L23 33"
-            stroke="url(#ic-mega)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8 20 L8 32 L17 32 L17 20Z" stroke="url(#ic-mega)" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M17 15 L42 8 L42 40 L17 33Z" stroke="url(#ic-mega)" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M17 33 L15 44 L21 44 L23 33" stroke="url(#ic-mega)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="44" cy="24" r="3" stroke="url(#ic-mega)" strokeWidth="2" />
     </GradSVG>
   )
@@ -300,11 +235,8 @@ function ChartIcon() {
     <GradSVG id="ic-chart">
       <line x1="6"  y1="44" x2="46" y2="44" stroke="url(#ic-chart)" strokeWidth="2" strokeLinecap="round" />
       <line x1="6"  y1="6"  x2="6"  y2="44" stroke="url(#ic-chart)" strokeWidth="2" strokeLinecap="round" />
-      <polyline points="10,38 20,24 30,30 42,12"
-                stroke="url(#ic-chart)" strokeWidth="2"
-                strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <polyline points="10,38 20,24 30,30 42,12" stroke="url(#ic-chart)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       <circle cx="42" cy="12" r="3.5" stroke="url(#ic-chart)" strokeWidth="2" />
-      <line x1="44" y1="8" x2="48" y2="4" stroke="url(#ic-chart)" strokeWidth="2" strokeLinecap="round" />
     </GradSVG>
   )
 }
@@ -313,10 +245,8 @@ function GearIcon() {
   return (
     <GradSVG id="ic-gear">
       <circle cx="26" cy="26" r="7" stroke="url(#ic-gear)" strokeWidth="2" />
-      <path
-        d="M26 10 L28 15 L33 13 L35 18 L40 19 L40 24 L45 26 L43 31 L45 36 L40 38 L39 43 L34 43 L31 47 L26 45 L21 47 L18 43 L13 43 L12 38 L7 36 L9 31 L7 26 L12 24 L12 19 L17 18 L19 13 L24 15Z"
-        stroke="url(#ic-gear)" strokeWidth="2" strokeLinejoin="round"
-      />
+      <path d="M26 10 L28 15 L33 13 L35 18 L40 19 L40 24 L45 26 L43 31 L45 36 L40 38 L39 43 L34 43 L31 47 L26 45 L21 47 L18 43 L13 43 L12 38 L7 36 L9 31 L7 26 L12 24 L12 19 L17 18 L19 13 L24 15Z"
+            stroke="url(#ic-gear)" strokeWidth="2" strokeLinejoin="round" />
     </GradSVG>
   )
 }
@@ -324,8 +254,7 @@ function GearIcon() {
 function DiamondIcon() {
   return (
     <GradSVG id="ic-diamond">
-      <polygon points="26,6 44,20 26,46 8,20"
-               stroke="url(#ic-diamond)" strokeWidth="2" strokeLinejoin="round" />
+      <polygon points="26,6 44,20 26,46 8,20" stroke="url(#ic-diamond)" strokeWidth="2" strokeLinejoin="round" />
       <line x1="8"  y1="20" x2="44" y2="20" stroke="url(#ic-diamond)" strokeWidth="2" />
       <line x1="17" y1="6"  x2="8"  y2="20" stroke="url(#ic-diamond)" strokeWidth="1.5" />
       <line x1="35" y1="6"  x2="44" y2="20" stroke="url(#ic-diamond)" strokeWidth="1.5" />
