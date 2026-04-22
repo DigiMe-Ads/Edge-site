@@ -40,10 +40,10 @@ export default function Footer() {
           Place the image at: src/assets/footer-bg.jpg
       ── */}
       <img
-        src="/assets/footer-bg.jpg"
+        src="/assets/footer-bg2.jpg"
         alt=""
         aria-hidden="true"
-        className="absolute left-0 top-0 w-full h-full object-cover object-top
+        className="absolute left-0 top-0 w-full h-full object-fill object-top
                    pointer-events-none select-none"
         style={{ zIndex: 0 }}
       />
