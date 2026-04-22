@@ -45,9 +45,9 @@ export default function InsightsSection() {
 
           {/* COMING SOON pill */}
           <div
-            className="flex-shrink-0 self-start px-3 py-1.5 rounded-sm border border-red-500"
+            className="flex-shrink-0 self-start px-3 py-1.5 rounded-sm border border-red-500 rounded-3xl"
           >
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-red-600">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-red-600 ">
               Coming Soon
             </span>
           </div>

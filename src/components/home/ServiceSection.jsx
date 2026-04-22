@@ -128,12 +128,12 @@ export default function ServicesSection() {
             {/* Blob */}
             <motion.div
               className="absolute pointer-events-none select-none"
-              style={{ right: '14%', top: '-120px', width: 'clamp(300px, 26%, 500px)', zIndex: 10, opacity: 0.72 }}
+              style={{ right: '14%', top: '-120px', width: 'clamp(300px, 26%, 500px)', zIndex: 10, opacity: 0.32 }}
               initial={{ opacity: 0, scale: 0.88 }}
-              animate={inView ? { opacity: 0.72, scale: 1 } : {}}
+              animate={inView ? { opacity: 0.32, scale: 1 } : {}}
               transition={{ duration: 1.1, delay: 0.05 }}
             >
-              <img src="/assets/blob-services.png" alt="" className="w-full h-auto" />
+              <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
             </motion.div>
 
             {/* 4-column staggered grid */}

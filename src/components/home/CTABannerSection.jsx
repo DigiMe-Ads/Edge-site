@@ -41,7 +41,7 @@ export default function CtaBannerSection() {
         style={{ top: 90, right: 0, width: '22%', maxWidth: 280, zIndex: 2 }}
         aria-hidden="true"
       >
-        <img src="/assets/blob-cta.png" alt="" className="w-full h-auto" />
+        <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
       </div>
 
       {/* ── Content ── */}

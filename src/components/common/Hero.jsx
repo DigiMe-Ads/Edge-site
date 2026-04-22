@@ -58,16 +58,16 @@ export default function CommonHero({ title = '', subtitle = '' }) {
       {/* Red blob — top left */}
       <motion.div
         className="blob-animate absolute pointer-events-none select-none"
-        style={{ top: '0%', left: '0%', width: '30%', maxWidth: 460, zIndex: 2 }}
+        style={{ top: '-10%', left: '-15%', width: '60%', maxWidth: 560, zIndex: 2, rotate: '180deg' }}
         initial={{ opacity: 0, scale: 0.82 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={{ opacity: 0.5, scale: 1 }}  
         transition={{ duration: 1.3, ease: 'easeOut' }}
         aria-hidden="true"
       >
-        <img src="/assets/blob-red-top.png" alt="" className="w-full h-auto" />
+        <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
       </motion.div>
 
-      {/* Red blob — bottom right */}
+      {/* ── Red blob — bottom right ── */}
       <motion.div
         className="blob-animate absolute pointer-events-none select-none"
         style={{ bottom: '20%', right: '5%', width: '20%', maxWidth: 340, zIndex: 2, animationDelay: '2.5s' }}
@@ -76,7 +76,10 @@ export default function CommonHero({ title = '', subtitle = '' }) {
         transition={{ duration: 1.3, ease: 'easeOut', delay: 0.25 }}
         aria-hidden="true"
       >
-        <img src="/assets/blob-red-right.png" alt="" className="w-full h-auto" />
+        
+          <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
+       
+        {/* <BlobBottomRight /> */}
       </motion.div>
 
       {/* Bokeh particles */}
