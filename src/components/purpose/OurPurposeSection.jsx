@@ -11,7 +11,7 @@ const TOP_CARDS = [
   {
     icon: <MissionIcon />,
     title: 'Our Mission',
-    desc: 'To enable organizations to turn talent, capability, and strategic direction into competitive advantage through insight-led people systems.',
+    desc: 'To enable organizations to turn talent, capability, and strategic direction into competitive advantage through insight-led people systems and integrated advisory solutions.',
   },
 ]
 
@@ -61,7 +61,7 @@ export default function OurPurposeSection() {
     <section
       ref={ref}
       className="w-full py-20 lg:py-28 overflow-hidden"
-      style={{ background: '#0f1724' , borderRadius: '100px 100px 0 0' }}
+      style={{ background: '#0f1724' }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 xl:px-16">
 
@@ -89,7 +89,7 @@ export default function OurPurposeSection() {
           {TOP_CARDS.map((card, i) => (
             <motion.div
               key={card.title}
-              className="rounded-2xl p-8 group hover:bg-white/[0.09] transition-colors duration-300"
+              className="p-8 group hover:bg-white/[0.09] transition-colors duration-300"
               style={{ background: CARD_BG, border: CARD_BORDER }}
               variants={fadeUp} custom={0.1 + i * 0.08}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
@@ -115,7 +115,7 @@ export default function OurPurposeSection() {
           {VALUE_CARDS.map((card, i) => (
             <motion.div
               key={card.title}
-              className="rounded-2xl p-6 group hover:bg-white/[0.09] transition-colors duration-300"
+              className="p-6 group hover:bg-white/[0.09] transition-colors duration-300"
               style={{ background: CARD_BG, border: CARD_BORDER }}
               variants={fadeUp} custom={0.22 + i * 0.07}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}

@@ -1,24 +1,33 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 // ─── Link columns ─────────────────────────────────────────────────────────────
-const USEFUL_LINKS   = ['About', 'Blog', 'Services']
-const SOLUTION_LINKS = ['Home', 'Case Study', 'Contact']
+const USEFUL_LINKS = [
+  { label: 'Who We Are',  href: '/about' },
+  { label: 'Our Purpose', href: '/purpose' },
+  { label: 'The Challenge', href: '/challenge' },
+]
+const SOLUTION_LINKS = [
+  { label: 'Products',     href: '/services' },
+  { label: 'Our Core',     href: '/our-core' },
+  { label: 'Our Founders', href: '/founders' },
+]
 
 const CONTACTS = [
   {
     icon: <PinIcon />,
-    text: '22/1 Dirstrck zip 9100, Melborn Australia',
+    text: 'No. 506/B/6, Hokandara Road, Dharmapala Mawatha, Thalawathugoda, Sri Lanka',
     href: null,
   },
   {
     icon: <ChatIcon />,
-    text: '+123 456 789',
-    href: 'tel:+123456789',
+    text: '+94 77 748 8022',
+    href: 'tel:+94777488022',
   },
   {
     icon: <MailIcon />,
-    text: 'edge@gmail.com',
-    href: 'mailto:edge@gmail.com',
+    text: 'prasangani@edgeconsultants.org',
+    href: 'mailto:prasangani@edgeconsultants.org',
   },
 ]
 
@@ -32,37 +41,24 @@ const SOCIALS = [
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden">
+    <footer className="relative w-full overflow-hidden" style={{ background: '#0d1526' }}>
 
-      {/* ── Background image ─────────────────────────────────────────────────
-          The dark footer image already has the white wave swerve baked into
-          its top edge. Using <img> pinned to top so the wave is never cropped.
-          Place the image at: src/assets/footer-bg.jpg
-      ── */}
-      <img
-        src="/assets/footer-bg2.jpg"
-        alt=""
-        aria-hidden="true"
-        className="absolute left-0 top-0 w-full h-full object-fill object-top
-                   pointer-events-none select-none"
-        style={{ zIndex: 0 }}
-      />
-
-      {/* ── Red blob — top right ─────────────────────────────────────────────
-          Place your blob PNG at: src/assets/blob-footer.png
-      ── */}
+      {/* ── Red angular accent — top right ── */}
       <div
         className="absolute pointer-events-none select-none"
-        style={{ top: 0, right: 0, width: '28%', maxWidth: 360, zIndex: 1 }}
+        style={{
+          top: 0, right: 0, width: '22%', maxWidth: 280, aspectRatio: '1/1', zIndex: 1,
+          background: 'linear-gradient(135deg, #e53e3e 0%, #b71c1c 100%)',
+          clipPath: 'polygon(100% 0, 100% 100%, 0 0)',
+          opacity: 0.5,
+        }}
         aria-hidden="true"
-      >
-        <img src="/assets/new-footer.png" alt="" className="w-full h-auto" />
-      </div>
+      />
 
       {/* ── Content ── */}
       <div
         className="relative z-10 max-w-7xl mx-auto
-                   px-6 lg:px-10 xl:px-16 pt-56 pb-14"
+                   px-6 lg:px-10 xl:px-16 pt-20 pb-14"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr] gap-12 lg:gap-8">
 
@@ -78,8 +74,8 @@ export default function Footer() {
             </a>
 
             <p className="text-white/55 text-[14px] leading-relaxed mb-8 max-w-[260px]">
-              Gleams steal into the inner sanctuary throw myself down among the
-              tall grass by the trickling
+              We enable organizations to align leadership, capability, and
+              execution to drive sustainable growth and competitive advantage.
             </p>
 
             {/* Social icons */}
@@ -89,7 +85,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center
+                  className="w-9 h-9 border border-white/25 flex items-center justify-center
                              text-white/70 hover:text-white hover:border-white hover:bg-white/10
                              transition-all duration-250"
                 >
@@ -102,17 +98,17 @@ export default function Footer() {
           {/* ── Col 2: Useful Links ── */}
           <div>
             <h4 className="text-white font-display font-bold text-[1.05rem] mb-7">
-              Usefull Link
+              Useful Links
             </h4>
             <ul className="space-y-5">
               {USEFUL_LINKS.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
                     className="text-white/60 text-[14px] hover:text-white transition-colors duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -125,13 +121,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-5">
               {SOLUTION_LINKS.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
                     className="text-white/60 text-[14px] hover:text-white transition-colors duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

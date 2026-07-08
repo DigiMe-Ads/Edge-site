@@ -62,7 +62,7 @@ export default function ServicesListSection() {
               <div className="flex items-start gap-4 mb-6">
                 {/* Target icon in soft red tinted rounded square */}
                 <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                  className="flex-shrink-0 w-12 h-12 flex items-center justify-center"
                   style={{ background: 'rgba(239,68,68,0.08)' }}
                 >
                   <TargetIcon />

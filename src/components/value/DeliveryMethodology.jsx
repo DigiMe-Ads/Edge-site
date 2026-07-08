@@ -32,12 +32,6 @@ const STEPS = [
 // ─── Bottom badges ────────────────────────────────────────────────────────────
 const BADGES = ['Data-Driven Insight', 'Measurable Outcomes', 'Deep Partnership']
 
-// ─── Stats top-right ──────────────────────────────────────────────────────────
-const STATS = [
-  { value: '98%',  label: 'Success Rate' },
-  { value: '200+', label: 'Projects'     },
-]
-
 const fadeUp = {
   hidden:  { opacity: 0, y: 20 },
   visible: (d = 0) => ({
@@ -65,9 +59,7 @@ export default function DeliveryMethodologySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 xl:px-16">
 
         {/* ── Header row ── */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-14">
-
-          {/* Left: heading + sub */}
+        <div className="mb-14">
           <motion.div
             variants={fadeUp} custom={0}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
@@ -79,34 +71,8 @@ export default function DeliveryMethodologySection() {
               Our Delivery Methodology
             </h2>
             <p className="text-white/45 text-[13.5px]">
-              A rigorous 4-step framework for guaranteed business excellence.
+              A disciplined 4-step framework for measurable business outcomes.
             </p>
-          </motion.div>
-
-          {/* Right: two stats separated by a vertical line */}
-          <motion.div
-            className="flex items-center gap-6"
-            variants={fadeUp} custom={0.1}
-            initial="hidden" animate={inView ? 'visible' : 'hidden'}
-          >
-            {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-6">
-                {i > 0 && (
-                  <div className="h-10 w-px" style={{ background: 'rgba(255,255,255,0.15)' }} />
-                )}
-                <div>
-                  <p
-                    className="font-display font-extrabold leading-none"
-                    style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', color: '#e53e3e' }}
-                  >
-                    {s.value}
-                  </p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 mt-1">
-                    {s.label}
-                  </p>
-                </div>
-              </div>
-            ))}
           </motion.div>
         </div>
 
@@ -115,7 +81,7 @@ export default function DeliveryMethodologySection() {
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              className="rounded-2xl p-6 flex flex-col gap-0
+              className="p-6 flex flex-col gap-0
                          hover:bg-white/[0.07] transition-colors duration-300"
               style={CARD_STYLE}
               variants={fadeUp} custom={0.08 + i * 0.08}

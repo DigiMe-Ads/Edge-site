@@ -25,16 +25,18 @@ const CONTACTS = [
 
 // ─── Interest options ─────────────────────────────────────────────────────────
 const INTERESTS = [
-  'Strategic Advisory',
-  'Human Capital & Leadership',
+  'Strategic Solutions',
+  'Human Capital Solutions',
+  'Leadership & Capability Programs',
   'Business Effectiveness Tools',
-  'Execution Support',
   'Other',
 ]
 
+const WHATSAPP_HREF = 'https://wa.me/94777488022'
+
 // ─── Input shared styles ──────────────────────────────────────────────────────
 const inputCls = `
-  w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3
+  w-full border border-gray-200 bg-gray-50 px-4 py-3
   text-[13.5px] text-gray-700 placeholder-gray-400
   outline-none focus:border-gray-400 focus:bg-white focus:ring-0
   transition-all duration-200
@@ -53,7 +55,7 @@ export default function ConsultationSection() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   const [form, setForm] = useState({
-    name: '', company: '', interest: 'Strategic Advisory', message: '',
+    name: '', company: '', interest: 'Strategic Solutions', message: '',
   })
   const [sent, setSent] = useState(false)
 
@@ -69,7 +71,6 @@ export default function ConsultationSection() {
       <div className="max-w-6xl mx-auto px-6 lg:px-10 xl:px-16">
         <motion.div
           className="flex flex-col lg:flex-row overflow-hidden shadow-xl"
-          style={{ borderRadius: '1.5rem' }}
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
@@ -80,7 +81,6 @@ export default function ConsultationSection() {
             className="flex-shrink-0 lg:w-[42%] px-8 py-10 lg:px-10 lg:py-12 flex flex-col justify-between"
             style={{
               background: 'linear-gradient(160deg, #e53e3e 0%, #c53030 100%)',
-              borderRadius: '1.5rem 0 0 1.5rem',
             }}
           >
             {/* Heading + sub */}
@@ -89,7 +89,7 @@ export default function ConsultationSection() {
                 className="font-display font-extrabold text-white leading-[1.1] mb-4"
                 style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2.2rem)' }}
               >
-                Let's Build the Future Together
+                Let's Build the Future of Your Business
               </h2>
               <p className="text-white/70 text-[13.5px] leading-relaxed max-w-xs">
                 Partner with us to align your strategy, talent, and execution for measurable results.
@@ -102,7 +102,7 @@ export default function ConsultationSection() {
                 <li key={i} className="flex items-start gap-4">
                   {/* Icon bubble */}
                   <div
-                    className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                    className="flex-shrink-0 w-10 h-10 flex items-center justify-center"
                     style={{ background: 'rgba(255,255,255,0.15)' }}
                   >
                     {c.icon}
@@ -136,7 +136,6 @@ export default function ConsultationSection() {
           {/* ══ RIGHT: white form panel ══ */}
           <div
             className="flex-1 bg-white px-8 py-10 lg:px-10 lg:py-12"
-            style={{ borderRadius: '0 1.5rem 1.5rem 0' }}
           >
             {sent ? (
               <div className="h-full flex items-center justify-center">
@@ -204,15 +203,29 @@ export default function ConsultationSection() {
                   />
                 </div>
 
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-gray-900 text-white text-[13px] font-bold
-                             uppercase tracking-[0.14em] py-4
-                             hover:bg-red-600 transition-colors duration-300"
-                >
-                  Schedule a Consultation
-                </button>
+                {/* Submit + WhatsApp */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-gray-900 text-white text-[13px] font-bold
+                               uppercase tracking-[0.14em] py-4
+                               hover:bg-red-600 transition-colors duration-300"
+                  >
+                    Schedule a Consultation
+                  </button>
+                  <a
+                    href={WHATSAPP_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2
+                               border border-gray-200 text-gray-700 text-[13px] font-bold
+                               uppercase tracking-[0.14em] py-4
+                               hover:border-green-500 hover:text-green-600 transition-colors duration-300"
+                  >
+                    <WhatsAppIcon />
+                    Contact Us
+                  </a>
+                </div>
               </form>
             )}
           </div>
@@ -249,6 +262,15 @@ function PinIcon() {
          stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
       <circle cx="12" cy="10" r="3"/>
+    </svg>
+  )
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 1.9 3 4.7 4.1.7.3 1.2.4 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2 0-.2-.2-.2-.5-.3z"/>
+      <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.8 3.9 13.4 3.9 12c0-4.5 3.7-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"/>
     </svg>
   )
 }

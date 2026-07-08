@@ -31,7 +31,7 @@ export default function PeopleDifferentiatorSection() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
             {/* Rounded photo */}
-            <div className="overflow-hidden" style={{ borderRadius: '1.75rem' }}>
+            <div className="overflow-hidden">
               {/*
                 Place image at: src/assets/people-diff.jpg
                 The overhead desk/laptops photo.
@@ -44,14 +44,15 @@ export default function PeopleDifferentiatorSection() {
               />
             </div>
 
-            {/* Red filled circle — overlaps bottom-right of the image */}
+            {/* Red accent square — overlaps bottom-right of the image */}
             <motion.div
-              className="absolute rounded-full bg-red-600"
+              className="absolute bg-red-600"
               style={{
                 width: 56, height: 56,
                 bottom: '10%',
                 right: '-4%',
                 zIndex: 2,
+                rotate: 45,
               }}
               initial={{ scale: 0, opacity: 0 }}
               animate={inView ? { scale: 1, opacity: 1 } : {}}
@@ -77,7 +78,7 @@ export default function PeopleDifferentiatorSection() {
               variants={fadeUp} custom={0.1}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              People are the differentiator between organizations that thrive and fall behind.
+              People are the differentiator between organizations that thrive and those that fall behind.
             </motion.h2>
 
             {/* Body para 1 */}
@@ -88,7 +89,10 @@ export default function PeopleDifferentiatorSection() {
             >
               In today's fast-changing world, organizations need more than HR support; they
               need a transformation engine that turns talent into{' '}
-              <strong className="text-gray-800 font-semibold">Measurable Business Outcomes</strong>.
+              <strong className="text-gray-800 font-semibold">Measurable Business Outcomes</strong>
+              {' '}supported by strong strategic direction and business discipline. At EDGE, we
+              design strategic people ecosystems that align talent, capability and performance
+              with business goals while strengthening overall organizational effectiveness.
             </motion.p>
 
             {/* Body para 2 */}
@@ -98,12 +102,15 @@ export default function PeopleDifferentiatorSection() {
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
               We are more than consultants – we are Catalysts of Transformation. We collaborate
-              with leaders to bridge the gap between people strategy and business strategy.
+              with leaders to bridge the gap between people strategy and business strategy,
+              enabling organizations to adapt, evolve and succeed through aligned strategy,
+              structure and execution. Our approach is rooted in deep partnership, practical
+              impact and measurable outcomes.
             </motion.p>
 
             {/* Pull quote — red left border */}
             <motion.blockquote
-              className="border-l-4 border-red-600 pl-4 mb-8"
+              className="border-l-4 border-red-600 pl-4 mb-6"
               variants={fadeUp} custom={0.25}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
@@ -111,6 +118,17 @@ export default function PeopleDifferentiatorSection() {
                 "Because true value is not in plans – it's in results."
               </p>
             </motion.blockquote>
+
+            {/* Closing statement */}
+            <motion.p
+              className="text-[14px] text-gray-500 leading-relaxed mb-8"
+              variants={fadeUp} custom={0.28}
+              initial="hidden" animate={inView ? 'visible' : 'hidden'}
+            >
+              At EDGE, every engagement is a partnership in progress, focused on building
+              high-performing, people-centered, future-ready organizations with clear
+              strategy, disciplined execution and sustainable growth.
+            </motion.p>
 
             {/* Two-column pillar cards */}
             <motion.div

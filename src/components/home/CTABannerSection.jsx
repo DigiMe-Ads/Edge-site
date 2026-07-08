@@ -1,10 +1,11 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const POINTS = [
-  'Neglect should be incapable of drawing',
-  'Present moment yet feel that',
-  'Greater artist than now while the lovely valley',
+  'Align leadership, capability, and execution',
+  'Drive sustainable growth and competitive advantage',
+  'Partner with Catalysts of Transformation',
 ]
 
 const fadeUp = {
@@ -27,7 +28,7 @@ export default function CtaBannerSection() {
     >
       
       <img
-        src="/assets/cta-bg.jpg"
+        src="/assets/cta-bg.png"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-top
@@ -38,11 +39,14 @@ export default function CtaBannerSection() {
       
       <div
         className="absolute pointer-events-none select-none"
-        style={{ top: 90, right: 0, width: '22%', maxWidth: 280, zIndex: 2 }}
+        style={{
+          top: 90, right: 0, width: '18%', maxWidth: 220, aspectRatio: '1/1', zIndex: 2,
+          background: 'linear-gradient(135deg, #f57c00 0%, #e53e3e 100%)',
+          clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+          opacity: 0.85,
+        }}
         aria-hidden="true"
-      >
-        <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
-      </div>
+      />
 
       {/* ── Content ── */}
       <div
@@ -59,7 +63,7 @@ export default function CtaBannerSection() {
             variants={fadeUp} custom={0}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            We Are Providing<br />Innovative Corporate Services
+            Let's Build the Future<br />of Your Business
           </motion.h2>
 
           <motion.p
@@ -67,8 +71,8 @@ export default function CtaBannerSection() {
             variants={fadeUp} custom={0.1}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            Entences fly into your mouth. Even the all-powerful Pointing has no
-            control about the blind texts it is an almost unorthographic
+            Partner with us to align your strategy, talent, and execution for
+            measurable results.
           </motion.p>
 
           <motion.p
@@ -76,7 +80,7 @@ export default function CtaBannerSection() {
             variants={fadeUp} custom={0.18}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            Advance Consultancy Services
+            Why Partner With EDGE
           </motion.p>
 
           <motion.ul
@@ -101,18 +105,18 @@ export default function CtaBannerSection() {
             variants={fadeUp} custom={0.32}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            <a href="#"
+            <Link to="/our-core"
                className="inline-block bg-white text-gray-900 text-[11px] font-bold
                           uppercase tracking-[0.16em] px-7 py-4
                           hover:bg-gray-100 transition-colors duration-300">
-              Find More Services
-            </a>
-            <a href="#"
+              Explore Our Services
+            </Link>
+            <Link to="/contact"
                className="inline-block bg-red-600 text-white text-[11px] font-bold
                           uppercase tracking-[0.16em] px-7 py-4
                           hover:bg-red-700 transition-colors duration-300">
-              Get a Service Now
-            </a>
+              Book a Consultation
+            </Link>
           </motion.div>
 
         </div>

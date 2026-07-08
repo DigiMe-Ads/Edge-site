@@ -95,26 +95,26 @@ function HamburgerButton({ onClick, isScrolled, isOpen }) {
       style={{ outline: 'none' }}
     >
       <motion.span
-        className="block rounded-full origin-left"
+        className="block origin-left"
         style={{ height: 2, background: lineColor, width: 24 }}
         animate={isOpen ? { rotate: 45, y: 6, width: 24 } : { rotate: 0, y: 0, width: 24 }}
         transition={{ duration: 0.28, ease: 'easeInOut' }}
       />
       <motion.span
-        className="relative block rounded-full"
+        className="relative block"
         style={{ height: 2, background: lineColor, width: 16 }}
         animate={isOpen ? { opacity: 0, x: -6 } : { opacity: 1, x: 0 }}
         transition={{ duration: 0.2 }}
       >
         <motion.span
-          className="absolute -right-[5px] -top-[3px] rounded-full"
-          style={{ width: 8, height: 8, background: dotColor }}
+          className="absolute -right-[5px] -top-[3px]"
+          style={{ width: 8, height: 8, background: dotColor, rotate: 45 }}
           animate={isOpen ? { scale: 0 } : { scale: 1 }}
           transition={{ duration: 0.22, ease: 'backOut' }}
         />
       </motion.span>
       <span
-        className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         style={{ background: isScrolled ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.08)' }}
       />
     </button>
@@ -146,7 +146,7 @@ function MobileMenu({ isOpen, onClose }) {
             style={{ background: 'linear-gradient(160deg, #1a0505 0%, #0d0d1a 100%)' }}
           >
             <div
-              className="absolute top-0 left-0 w-40 h-40 rounded-full pointer-events-none"
+              className="absolute top-0 left-0 w-40 h-40 pointer-events-none"
               style={{ background: 'rgba(180,20,20,0.55)', filter: 'blur(40px)', transform: 'translate(-30%, -30%)' }}
             />
             <button
@@ -175,7 +175,7 @@ function MobileMenu({ isOpen, onClose }) {
                       className="flex items-center gap-2 py-3 text-[15px] font-medium text-white/75 hover:text-white border-b border-white/8 transition-colors group"
                       onClick={onClose}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                       {link.label}
                     </Link>
                   </motion.li>
@@ -189,8 +189,8 @@ function MobileMenu({ isOpen, onClose }) {
               transition={{ delay: 0.45 }}
             >
               <p className="text-[10px] text-white/40 uppercase tracking-[0.22em] mb-1">Call Us</p>
-              <a href="tel:+123456789" className="text-lg font-bold text-white hover:text-red-400 transition-colors">
-                +123 456 789
+              <a href="tel:+94777488022" className="text-lg font-bold text-white hover:text-red-400 transition-colors">
+                +94 77 748 8022
               </a>
             </motion.div>
           </motion.div>
@@ -306,10 +306,10 @@ export default function Navbar() {
                 Call Us
               </p>
               <a
-                href="tel:+123456789"
+                href="tel:+94777488022"
                 className={`text-[13px] font-semibold tracking-[0.01em] transition-colors ${isScrolled ? 'text-gray-900 hover:text-red-600' : 'text-white hover:text-red-300'}`}
               >
-                +123 456 789
+                +94 77 748 8022
               </a>
             </div>
           </div>

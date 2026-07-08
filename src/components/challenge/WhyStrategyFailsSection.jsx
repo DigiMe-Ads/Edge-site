@@ -15,6 +15,14 @@ const ACCORDION = [
     q: 'Leadership capability does not match ambition',
     a: 'Leaders are often promoted without being equipped. We develop leadership capacity that matches organizational ambition.',
   },
+  {
+    q: 'Operational inefficiencies reduce performance',
+    a: 'Inefficient processes quietly erode margins and momentum. We streamline operations to sustain productivity and execution discipline.',
+  },
+  {
+    q: 'Culture and incentives do not drive results',
+    a: 'Culture and reward systems that pull in different directions undermine strategy. We align incentives and culture with the outcomes that matter.',
+  },
 ]
 
 // ─── Right grid cards ─────────────────────────────────────────────────────────
@@ -96,7 +104,7 @@ export default function WhyStrategyFailsSection() {
                 return (
                   <div
                     key={i}
-                    className="bg-white rounded-2xl mb-3 overflow-hidden shadow-sm"
+                    className="bg-white mb-3 overflow-hidden shadow-sm"
                   >
                     <button
                       onClick={() => setOpen(isOpen ? null : i)}
@@ -146,7 +154,7 @@ export default function WhyStrategyFailsSection() {
 
             {/* Red quote card */}
             <motion.div
-              className="rounded-2xl px-7 py-6 bg-red-600"
+              className="px-7 py-6 bg-red-600"
               variants={fadeUp} custom={0.2}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
@@ -165,7 +173,7 @@ export default function WhyStrategyFailsSection() {
             {GRID_CARDS.map((card, i) => (
               <motion.div
                 key={i}
-                className="bg-white rounded-2xl p-6 shadow-sm
+                className="bg-white p-6 shadow-sm
                            hover:shadow-md transition-shadow duration-250"
                 variants={fadeUp} custom={0.1 + i * 0.08}
                 initial="hidden" animate={inView ? 'visible' : 'hidden'}

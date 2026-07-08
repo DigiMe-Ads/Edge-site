@@ -45,7 +45,7 @@ export default function InsightsSection() {
 
           {/* COMING SOON pill */}
           <div
-            className="flex-shrink-0 self-start px-3 py-1.5 rounded-sm border border-red-500 rounded-3xl"
+            className="flex-shrink-0 self-start px-3 py-1.5 border border-red-500"
           >
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-red-600 ">
               Coming Soon
@@ -64,7 +64,7 @@ export default function InsightsSection() {
               {/* Image — rounded corners */}
               <div
                 className="overflow-hidden mb-3 group cursor-pointer"
-                style={{ borderRadius: '0.75rem', aspectRatio: '1/0.85' }}
+                style={{ aspectRatio: '1/0.85' }}
               >
                 <img
                   src={card.img}

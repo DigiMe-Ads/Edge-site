@@ -41,7 +41,7 @@ export default function CommonHero({ title = '', subtitle = '' }) {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/hero-bg.jpg')" }}
+        style={{ backgroundImage: "url('/assets/hero-bg-sharp.jpg')" }}
         aria-hidden="true"
       />
 
@@ -55,32 +55,33 @@ export default function CommonHero({ title = '', subtitle = '' }) {
         aria-hidden="true"
       />
 
-      {/* Red blob — top left */}
+      {/* Red angular accent — top left */}
       <motion.div
-        className="blob-animate absolute pointer-events-none select-none"
-        style={{ top: '-10%', left: '-15%', width: '60%', maxWidth: 560, zIndex: 2, rotate: '180deg' }}
-        initial={{ opacity: 0, scale: 0.82 }}
-        animate={{ opacity: 0.5, scale: 1 }}  
+        className="absolute pointer-events-none select-none"
+        style={{
+          top: '-16%', left: '-12%', width: '46%', maxWidth: 460, aspectRatio: '1/1', zIndex: 2,
+          background: 'linear-gradient(135deg, #e53e3e 0%, #b71c1c 100%)',
+          clipPath: 'polygon(0 0, 100% 0, 100% 30%, 30% 100%, 0 100%)',
+        }}
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 0.28, scale: 1 }}
         transition={{ duration: 1.3, ease: 'easeOut' }}
         aria-hidden="true"
-      >
-        <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
-      </motion.div>
+      />
 
-      {/* ── Red blob — bottom right ── */}
+      {/* ── Red angular accent — bottom right ── */}
       <motion.div
-        className="blob-animate absolute pointer-events-none select-none"
-        style={{ bottom: '20%', right: '5%', width: '20%', maxWidth: 340, zIndex: 2, animationDelay: '2.5s' }}
-        initial={{ opacity: 0, scale: 0.82 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="absolute pointer-events-none select-none"
+        style={{
+          bottom: '18%', right: '5%', width: '14%', maxWidth: 220, aspectRatio: '1/1', zIndex: 2,
+          background: 'linear-gradient(135deg, #f57c00 0%, #e53e3e 100%)',
+          clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+        }}
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 0.8, scale: 1 }}
         transition={{ duration: 1.3, ease: 'easeOut', delay: 0.25 }}
         aria-hidden="true"
-      >
-        
-          <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
-       
-        {/* <BlobBottomRight /> */}
-      </motion.div>
+      />
 
       {/* Bokeh particles */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 3 }}>
@@ -111,23 +112,20 @@ export default function CommonHero({ title = '', subtitle = '' }) {
         </motion.h1>
       </div>
 
-      {/* Bottom S-curve wave */}
+      {/* Bottom angled divider */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{ zIndex: 10 }}
         aria-hidden="true"
       >
         <svg
-          viewBox="0 0 1440 110"
+          viewBox="0 0 1440 90"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full"
-          style={{ display: 'block', height: 'clamp(60px, 8vw, 110px)' }}
+          style={{ display: 'block', height: 'clamp(48px, 6vw, 90px)' }}
         >
-          <path
-            d="M0,110 L0,68 C120,55 240,44 400,62 C560,80 680,95 840,72 C1000,49 1160,28 1320,38 L1440,44 L1440,110 Z"
-            fill="white"
-          />
+          <polygon points="0,90 0,30 1440,0 1440,90" fill="white" />
         </svg>
       </div>
     </section>

@@ -1,41 +1,13 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-// ─── Skill bar data ───────────────────────────────────────────────────────────
-const SKILLS = [
-  { label: 'Consulting', pct: 85 },
-  { label: 'Marketing',  pct: 68 },
-]
+import { Link } from 'react-router-dom'
 
 // ─── Checklist items ──────────────────────────────────────────────────────────
 const POINTS = [
-  'Neglect should be incapable of drawing',
-  'Present moment yet feel that',
-  'Greater artist than now while the lovely valley',
+  'Align talent, strategy, and performance',
+  'Strengthen effectiveness through practical execution',
+  'Build high-performing, future-ready businesses',
 ]
-
-// ─── Animated skill bar ───────────────────────────────────────────────────────
-function SkillBar({ label, pct, delay }) {
-  const ref   = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-
-  return (
-    <div ref={ref} className="mb-6">
-      <p className="text-[13px] font-semibold text-gray-800 mb-2">{label}</p>
-      {/* Track */}
-      <div className="relative h-[3px] bg-gray-200 rounded-full overflow-hidden">
-        {/* Fill */}
-        <motion.div
-          className="absolute left-0 top-0 h-full rounded-full"
-          style={{ background: '#d32f2f' }}
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${pct}%` } : { width: 0 }}
-          transition={{ duration: 1.1, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-        />
-      </div>
-    </div>
-  )
-}
 
 // ─── Fade-up variant ──────────────────────────────────────────────────────────
 const fadeUp = {
@@ -63,7 +35,7 @@ export default function AboutSection() {
               className="text-[11px] font-bold uppercase tracking-[0.22em] text-red-600 mb-4"
               variants={fadeUp} custom={0} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              About Us
+              Who We Are
             </motion.p>
 
             {/* Heading */}
@@ -72,7 +44,7 @@ export default function AboutSection() {
               style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)' }}
               variants={fadeUp} custom={0.08} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              We are Business Consulting Agency.
+              We believe people are the driving force behind every successful organization.
             </motion.h2>
 
             {/* Body copy */}
@@ -80,8 +52,11 @@ export default function AboutSection() {
               className="text-gray-500 text-[15px] leading-relaxed mb-8 max-w-md"
               variants={fadeUp} custom={0.16} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              Sense of mere tranquil existence, that I neglect my talents should be
-              incapable of drawing single
+              At EDGE, we align talent, strategy, and performance to deliver measurable
+              business outcomes. As catalysts for transformation, we help organizations
+              strengthen effectiveness through practical execution and strategic partnership.
+              Together, we build high-performing, future-ready businesses designed for
+              sustainable growth.
             </motion.p>
 
             {/* Check list */}
@@ -108,26 +83,16 @@ export default function AboutSection() {
               ))}
             </motion.ul>
 
-            {/* Skill bars */}
-            <motion.div
-              className="mb-10"
-              variants={fadeUp} custom={0.3} initial="hidden" animate={inView ? 'visible' : 'hidden'}
-            >
-              {SKILLS.map((s, i) => (
-                <SkillBar key={s.label} label={s.label} pct={s.pct} delay={0.35 + i * 0.15} />
-              ))}
-            </motion.div>
-
             {/* CTA button */}
             <motion.div
-              variants={fadeUp} custom={0.38} initial="hidden" animate={inView ? 'visible' : 'hidden'}
+              variants={fadeUp} custom={0.3} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="inline-block bg-gray-900 text-white text-[11px] font-bold uppercase tracking-[0.16em] px-7 py-4 hover:bg-red-600 transition-colors duration-300"
               >
-                More About
-              </a>
+                Read More About Us
+              </Link>
             </motion.div>
           </div>
 
@@ -138,7 +103,7 @@ export default function AboutSection() {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {/* Large faint circle ring — sits behind the photo */}
+            {/* Large faint square frame — sits behind the photo */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -148,12 +113,11 @@ export default function AboutSection() {
                 left: '50%',
                 transform: 'translate(-58%, -50%)',
                 border: '1px solid rgba(180,180,200,0.30)',
-                borderRadius: '9999px',
                 zIndex: 0,
               }}
             />
 
-            {/* Soft pink blob behind image — bottom-left of photo */}
+            {/* Red accent block behind image — bottom-left of photo */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -162,35 +126,35 @@ export default function AboutSection() {
                 bottom: '-6%',
                 left: '-2%',
                 background: 'rgba(220,60,60,0.07)',
-                borderRadius: '9999px',
-                filter: 'blur(2px)',
                 zIndex: 0,
               }}
             />
 
-            {/* Blue dot */}
+            {/* Blue accent square */}
             <div
-              className="absolute pointer-events-none rounded-full"
+              className="absolute pointer-events-none"
               style={{
-                width: 44,
-                height: 44,
+                width: 40,
+                height: 40,
                 bottom: '18%',
                 left: '-1%',
                 background: '#1b3a6b',
                 zIndex: 2,
+                transform: 'rotate(45deg)',
               }}
             />
 
-            {/* Brown/terracotta small dot */}
+            {/* Terracotta accent square */}
             <div
-              className="absolute pointer-events-none rounded-full"
+              className="absolute pointer-events-none"
               style={{
-                width: 18,
-                height: 18,
+                width: 16,
+                height: 16,
                 bottom: 'calc(18% + 52px)',
                 left: '2%',
                 background: '#8b5a4a',
                 zIndex: 2,
+                transform: 'rotate(45deg)',
               }}
             />
 

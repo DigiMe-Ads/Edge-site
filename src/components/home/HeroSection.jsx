@@ -39,27 +39,18 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <div style={{ background: '#ffffff' }}>
-      {/* Hidden SVG that defines the clip shape */}
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <defs>
-          <clipPath id="heroClip" clipPathUnits="objectBoundingBox">
-            <path d="M0,0 L1,0 L1,0.88 C0.75,1.0 0.25,1.0 0,0.92 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-
       <section
         className="relative w-full overflow-hidden"
         style={{
           height: '90svh',
           minHeight: 640,
-          clipPath: 'url(#heroClip)',
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 94%)',
         }}
       >
         {/* ── Background image ── */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/assets/hero-bg.jpg')" }}
+          style={{ backgroundImage: "url('/assets/hero-bg-sharp.jpg')" }}
           aria-hidden="true"
         />
 
@@ -72,29 +63,33 @@ export default function HeroSection() {
           aria-hidden="true"
         />
 
-        {/* ── Red blob — top left ── */}
+        {/* ── Red angular accent — top left ── */}
         <motion.div
-          className="blob-animate absolute pointer-events-none select-none"
-          style={{ top: '-10%', left: '-15%', width: '60%', maxWidth: 560, zIndex: 2, rotate: '180deg' }}
-          initial={{ opacity: 0, scale: 0.82 }}
-          animate={{ opacity: 0.5, scale: 1 }}
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: '-18%', left: '-12%', width: '52%', maxWidth: 520, aspectRatio: '1/1', zIndex: 2,
+            background: 'linear-gradient(135deg, #e53e3e 0%, #b71c1c 100%)',
+            clipPath: 'polygon(0 0, 100% 0, 100% 30%, 30% 100%, 0 100%)',
+          }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 0.32, scale: 1 }}
           transition={{ duration: 1.3, ease: 'easeOut' }}
           aria-hidden="true"
-        >
-          <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
-        </motion.div>
+        />
 
-        {/* ── Red blob — bottom right ── */}
+        {/* ── Red angular accent — bottom right ── */}
         <motion.div
-          className="blob-animate absolute pointer-events-none select-none"
-          style={{ bottom: '20%', right: '5%', width: '20%', maxWidth: 340, zIndex: 2, animationDelay: '2.5s' }}
-          initial={{ opacity: 0, scale: 0.82 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="absolute pointer-events-none select-none"
+          style={{
+            bottom: '16%', right: '4%', width: '16%', maxWidth: 260, aspectRatio: '1/1', zIndex: 2,
+            background: 'linear-gradient(135deg, #f57c00 0%, #e53e3e 100%)',
+            clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+          }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 0.85, scale: 1 }}
           transition={{ duration: 1.3, ease: 'easeOut', delay: 0.25 }}
           aria-hidden="true"
-        >
-          <img src="/assets/shape-right.png" alt="" className="w-full h-auto" />
-        </motion.div>
+        />
 
         {/* ── Bokeh particles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 3 }}>
@@ -140,7 +135,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <button className="btn-primary mr-3">Request a Consultation</button>
+            <button className="btn-primary mr-3">Book a Consultation</button>
             <button className="btn-secondary">Explore Our Services</button>
           </motion.div>
         </motion.div>

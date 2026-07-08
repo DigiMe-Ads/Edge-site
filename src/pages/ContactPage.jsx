@@ -1,6 +1,5 @@
 import Navbar from '../components/common/Navbar'
 import CommonHero from '../components/common/Hero'
-import ContactSection from '../components/contact/ContactSection'
 import ConsultationSection from '../components/contact/ConsultationSection'
 import Footer from '../components/common/Footer'
 

@@ -9,23 +9,25 @@ const LEADERS = [
     img:   '/assets/leader-1.png',
     credentials: [
       'MBA – Cardiff Metropolitan University, UK',
-      'Associate Member – CIPM, Sri Lanka',
-      'Advanced Diploma – City & Guilds, UK',
+      'Associate Member – Chartered Institute of Personnel Management (CIPM), Sri Lanka',
+      'Professional Qualification in HRM – CIPM, Sri Lanka',
+      'Advanced Diploma in Train-the-Trainer (City & Guilds, UK)',
     ],
-    bio:  'A strategic HR and business transformation leader with over 15 years of experience in aligning people strategies with business objectives.',
-    tags: ['Digitalization', 'Governance', 'HR Strategy'],
+    bio:  'A strategic HR and business transformation leader with over 15 years of experience in aligning people strategies with business objectives. She brings deep expertise in driving performance, governance, and organizational effectiveness across complex business environments.',
+    tags: ['HR Strategy & Transformation', 'Performance Management & Governance', 'HR Digitalization', 'Organizational Alignment'],
   },
   {
     name:  'Samadhi Perera',
     role:  'Director | Co-Founder',
     img:   '/assets/leader-1.png',
     credentials: [
-      'MSc in HRM & Development – Salford, UK',
-      'Associate Member – CIPM, Sri Lanka',
-      'Executive Cert in HR Analytics – CIPM',
+      'MSc in HRM & Development – University of Salford, UK',
+      'Associate Member – Chartered Institute of Personnel Management (CIPM), Sri Lanka',
+      'Professional Qualification in HRM – CIPM, Sri Lanka',
+      'Executive Certificate in HR Analytics (ECHRA), CIPM',
     ],
-    bio:  'A seasoned leader in culture transformation and organizational development with over two decades of cross-industry experience.',
-    tags: ['Culture', 'Leadership', 'HR Analytics'],
+    bio:  'A seasoned leader in culture transformation and organizational development with over two decades of cross-industry experience. She specializes in building high-performance cultures and aligning leadership, talent, and strategy to drive sustainable growth.',
+    tags: ['Culture Transformation', 'Leadership Development', 'Organizational Effectiveness', 'Talent Strategy & HR Systems'],
   },
 ]
 
@@ -50,7 +52,7 @@ function LeaderCard({ leader, index, inView }) {
         {/* Rounded photo */}
         <div
           className="overflow-hidden w-full"
-          style={{ borderRadius: '1.25rem', aspectRatio: '3/3.8' }}
+          style={{ aspectRatio: '3/3.8' }}
         >
           <img
             src={leader.img}
@@ -62,7 +64,7 @@ function LeaderCard({ leader, index, inView }) {
 
         {/* Name + role overlay — white card at bottom of photo */}
         <div
-          className="absolute bottom-3 left-3 right-3 bg-white rounded-xl px-4 py-3 shadow-sm"
+          className="absolute bottom-3 left-3 right-3 bg-white px-4 py-3 shadow-sm"
         >
           <p className="font-display font-extrabold text-gray-900 text-[0.95rem] leading-tight">
             {leader.name}
@@ -84,7 +86,7 @@ function LeaderCard({ leader, index, inView }) {
         <ul className="space-y-1 mb-5">
           {leader.credentials.map((c, i) => (
             <li key={i} className="flex items-start gap-2 text-[13px] text-gray-500">
-              <span className="mt-[6px] flex-shrink-0 w-1 h-1 rounded-full bg-gray-400" />
+              <span className="mt-[6px] flex-shrink-0 w-1 h-1 bg-gray-400" />
               {c}
             </li>
           ))}
@@ -101,7 +103,7 @@ function LeaderCard({ leader, index, inView }) {
             <span
               key={tag}
               className="text-[11px] font-medium text-gray-500 border border-gray-200
-                         rounded-full px-3 py-1 hover:border-red-300 hover:text-red-600
+                         px-3 py-1 hover:border-red-300 hover:text-red-600
                          transition-colors duration-200 cursor-default"
             >
               {tag}
