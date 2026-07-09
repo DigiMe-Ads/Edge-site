@@ -145,7 +145,7 @@ function MobileMenu({ isOpen, onClose }) {
             />
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+              className="absolute top-5 right-5 z-20 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors"
               aria-label="Close menu"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -224,17 +224,19 @@ export default function Navbar() {
           className="relative w-full h-[72px] flex items-center"
           style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
         >
-          {/* FAR LEFT: Hamburger */}
-          <HamburgerButton
-            onClick={() => setMobileOpen(true)}
-            isScrolled={isScrolled}
-            isOpen={mobileOpen}
-          />
+          {/* Hamburger — mobile/tablet only, hidden on desktop */}
+          <div className="xl:hidden">
+            <HamburgerButton
+              onClick={() => setMobileOpen(true)}
+              isScrolled={isScrolled}
+              isOpen={mobileOpen}
+            />
+          </div>
 
-          {/* CENTER LOGO */}
+          {/* LOGO — centered (absolute) on mobile/tablet, left-aligned (static) on desktop */}
           <Link
             to="/"
-            className="absolute left-1/2 -translate-x-1/2 flex-shrink-0 z-10"
+            className="absolute left-1/2 -translate-x-1/2 xl:static xl:translate-x-0 flex-shrink-0 z-10"
             aria-label="home"
           >
             <img
@@ -248,28 +250,13 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* NAV LINKS — a 3-column grid keeps the center gutter perfectly
-              aligned with the absolutely-centered logo regardless of how
-              many links (or how much text) sit on each side.
-          */}
-          <div className="hidden xl:grid absolute inset-0 items-center pointer-events-none"
-               style={{ gridTemplateColumns: '1fr 160px 1fr', paddingLeft: '1rem', paddingRight: '1rem' }}>
-
-              <ul className="flex items-center justify-end gap-7 pointer-events-auto">
-                {LEFT_LINKS.map((link) => (
-                  <NavItem key={link.label} link={link} isScrolled={isScrolled} />
-                ))}
-              </ul>
-
-              {/* Center gutter — reserves space for the absolutely-positioned logo */}
-              <div />
-
-              <ul className="flex items-center justify-start gap-7 pointer-events-auto">
-                {RIGHT_LINKS.map((link) => (
-                  <NavItem key={link.label} link={link} isScrolled={isScrolled} />
-                ))}
-              </ul>
-
+          {/* NAV LINKS — desktop only, centered in the space between the logo and Call Us */}
+          <div className="hidden xl:flex flex-1 items-center justify-center">
+            <ul className="flex items-center gap-7">
+              {[...LEFT_LINKS, ...RIGHT_LINKS].map((link) => (
+                <NavItem key={link.label} link={link} isScrolled={isScrolled} />
+              ))}
+            </ul>
           </div>
 
           {/* FAR RIGHT: Call Us */}
