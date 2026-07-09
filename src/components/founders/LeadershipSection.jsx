@@ -6,7 +6,7 @@ const LEADERS = [
   {
     name:  'Prasangani Perera',
     role:  'Director | Co-Founder',
-    img:   '/assets/leader-1.png',
+    img:   '/assets/prasangi-founder.jpeg',
     credentials: [
       'MBA – Cardiff Metropolitan University, UK',
       'Associate Member – Chartered Institute of Personnel Management (CIPM), Sri Lanka',
