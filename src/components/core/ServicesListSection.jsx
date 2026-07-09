@@ -48,32 +48,49 @@ export default function ServicesListSection() {
     <section ref={ref} className="w-full bg-white py-16 lg:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 xl:px-16">
 
-        {/* Thin top border */}
-        <div className="border-t border-gray-100 mb-12" />
+        {/* Section title */}
+        <div className="text-center mb-12">
+          <h2 className="font-display font-extrabold text-gray-900 leading-tight"
+              style={{ fontSize: '2.5rem' }}>
+            Our Core Service Lines
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {COLUMNS.map((col, ci) => (
             <motion.div
               key={ci}
+              className="group relative border border-gray-100 p-7
+                         hover:border-red-200 hover:shadow-md transition-all duration-300"
               variants={fadeUp} custom={ci * 0.1}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              {/* Icon + Title row */}
-              <div className="flex items-start gap-4 mb-6">
-                {/* Target icon in soft red tinted rounded square */}
+              {/* Red top-edge accent on hover */}
+              <div className="absolute left-0 right-0 top-0 h-[3px] bg-red-600
+                              scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+
+              {/* Ghost number + icon row */}
+              <div className="flex items-start justify-between mb-6">
+                <span
+                  className="font-display font-bold text-gray-200 leading-none select-none"
+                  style={{ fontSize: '1.9rem' }}
+                >
+                  {String(ci + 1).padStart(2, '0')}
+                </span>
+                {/* Target icon in soft red tinted square */}
                 <div
                   className="flex-shrink-0 w-12 h-12 flex items-center justify-center"
                   style={{ background: 'rgba(239,68,68,0.08)' }}
                 >
                   <TargetIcon />
                 </div>
-
-                {/* Title */}
-                <h3 className="font-display font-extrabold text-gray-900 leading-snug"
-                    style={{ fontSize: '1rem', paddingTop: 2 }}>
-                  {col.title}
-                </h3>
               </div>
+
+              {/* Title */}
+              <h3 className="font-display font-extrabold text-gray-900 leading-snug mb-5"
+                  style={{ fontSize: '1.05rem' }}>
+                {col.title}
+              </h3>
 
               {/* Checklist */}
               <ul className="space-y-3">
@@ -87,9 +104,6 @@ export default function ServicesListSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Thin bottom border */}
-        <div className="border-b border-gray-100 mt-12" />
 
       </div>
     </section>

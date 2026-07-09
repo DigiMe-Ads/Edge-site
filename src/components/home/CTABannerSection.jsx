@@ -39,14 +39,11 @@ export default function CtaBannerSection() {
       
       <div
         className="absolute pointer-events-none select-none"
-        style={{
-          top: 90, right: 0, width: '18%', maxWidth: 220, aspectRatio: '1/1', zIndex: 2,
-          background: 'linear-gradient(135deg, #f57c00 0%, #e53e3e 100%)',
-          clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
-          opacity: 0.85,
-        }}
+        style={{ top: 90, right: 0, width: '22%', maxWidth: 280, zIndex: 2 }}
         aria-hidden="true"
-      />
+      >
+        <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
+      </div>
 
       {/* ── Content ── */}
       <div
@@ -105,7 +102,7 @@ export default function CtaBannerSection() {
             variants={fadeUp} custom={0.32}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            <Link to="/our-core"
+            <Link to="/services"
                className="inline-block bg-white text-gray-900 text-[11px] font-bold
                           uppercase tracking-[0.16em] px-7 py-4
                           hover:bg-gray-100 transition-colors duration-300">

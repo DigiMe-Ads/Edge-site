@@ -3,21 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 // ─── Nav link data ────────────────────────────────────────────────────────────
-// 5 links on each side — tighter spacing applied throughout
 const LEFT_LINKS = [
-  { label: 'Home',         href: '/',            dropdown: null },
-  { label: 'Who We Are',   href: '/about',       dropdown: null },
-  { label: 'Our Purpose',  href: '/purpose',     dropdown: null },
-  { label: 'The Challenge',href: '/challenge',   dropdown: null },
-  { label: 'Leadership',   href: '/leadership',  dropdown: null },
+  { label: 'Home',     href: '/',       dropdown: null },
+  { label: 'About Us', href: '/about',  dropdown: null },
 ]
 
 const RIGHT_LINKS = [
-  { label: 'Products', href: '/services', dropdown: null },
-  { label: 'Our Core',     href: '/our-core',     dropdown: null },
-  { label: 'Values',  href: '/values',  dropdown: null },
+  { label: 'Services',     href: '/services', dropdown: null },
   { label: 'Our Founders', href: '/founders',  dropdown: null },
-  { label: 'Contact Us', href: '/contact',  dropdown: null },
+  { label: 'Contact Us',   href: '/contact',   dropdown: null },
 ]
 
 // ─── Dropdown ─────────────────────────────────────────────────────────────────
@@ -254,36 +248,28 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* NAV LINKS — centered around the absolutely-positioned logo.
-              The outer div is inset-0 so it spans the full header width.
-              We justify-center the inner group so it's viewport-centered,
-              then use the spacer to "punch a hole" exactly where the logo sits.
-              Tune w-[Xpx] on the spacer until links stop overlapping the logo.
+          {/* NAV LINKS — a 3-column grid keeps the center gutter perfectly
+              aligned with the absolutely-centered logo regardless of how
+              many links (or how much text) sit on each side.
           */}
-          <div className="hidden xl:flex absolute inset-0 items-center justify-center pointer-events-none">
-            <div className="flex items-center gap-3 pointer-events-auto">
+          <div className="hidden xl:grid absolute inset-0 items-center pointer-events-none"
+               style={{ gridTemplateColumns: '1fr 160px 1fr', paddingLeft: '1rem', paddingRight: '1rem' }}>
 
-              <ul className="flex items-center gap-7">
+              <ul className="flex items-center justify-end gap-7 pointer-events-auto">
                 {LEFT_LINKS.map((link) => (
                   <NavItem key={link.label} link={link} isScrolled={isScrolled} />
                 ))}
               </ul>
 
-              {/*
-                Spacer = logo rendered width + 2×padding on each side.
-                Your logo at h-10 is roughly 130px wide.
-                Add ~20px breathing room each side → 170px total.
-                Increase if links still overlap, decrease if gap is too large.
-              */}
-              <div className="w-[160px] flex-shrink-0" />
+              {/* Center gutter — reserves space for the absolutely-positioned logo */}
+              <div />
 
-              <ul className="flex items-center gap-7">
+              <ul className="flex items-center justify-start gap-7 pointer-events-auto">
                 {RIGHT_LINKS.map((link) => (
                   <NavItem key={link.label} link={link} isScrolled={isScrolled} />
                 ))}
               </ul>
 
-            </div>
           </div>
 
           {/* FAR RIGHT: Call Us */}

@@ -109,7 +109,7 @@ export default function ServicesSection() {
         {/* ── CTA ── */}
         <div className="text-center">
           <Link
-            to="/our-core"
+            to="/services"
             className="inline-block bg-gray-900 text-white text-[11px] font-bold uppercase
                        tracking-[0.16em] px-8 py-4 hover:bg-red-600 transition-colors duration-300"
           >

@@ -1,6 +1,7 @@
 import Navbar from '../components/common/Navbar'
 import CommonHero from '../components/common/Hero'
 import PeopleDifferentiatorSection from '../components/about/PeopleDifferenceSection'
+import OurPurposeSection from '../components/purpose/OurPurposeSection'
 import Footer from '../components/common/Footer'
 
 export default function AboutPage() {
@@ -12,6 +13,7 @@ export default function AboutPage() {
       {/* ── Sections ── */}
       <CommonHero title="About Us" />
         <PeopleDifferentiatorSection />
+        <OurPurposeSection />
     <Footer />
     </main>
   )

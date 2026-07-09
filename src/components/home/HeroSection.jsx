@@ -63,33 +63,29 @@ export default function HeroSection() {
           aria-hidden="true"
         />
 
-        {/* ── Red angular accent — top left ── */}
+        {/* ── Red shape — top left ── */}
         <motion.div
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '-18%', left: '-12%', width: '52%', maxWidth: 520, aspectRatio: '1/1', zIndex: 2,
-            background: 'linear-gradient(135deg, #e53e3e 0%, #b71c1c 100%)',
-            clipPath: 'polygon(0 0, 100% 0, 100% 30%, 30% 100%, 0 100%)',
-          }}
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 0.32, scale: 1 }}
+          className="blob-animate absolute pointer-events-none select-none"
+          style={{ top: '-10%', left: '-15%', width: '60%', maxWidth: 560, zIndex: 2, rotate: '180deg' }}
+          initial={{ opacity: 0, scale: 0.82 }}
+          animate={{ opacity: 0.5, scale: 1 }}
           transition={{ duration: 1.3, ease: 'easeOut' }}
           aria-hidden="true"
-        />
+        >
+          <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
+        </motion.div>
 
-        {/* ── Red angular accent — bottom right ── */}
+        {/* ── Red shape — bottom right ── */}
         <motion.div
-          className="absolute pointer-events-none select-none"
-          style={{
-            bottom: '16%', right: '4%', width: '16%', maxWidth: 260, aspectRatio: '1/1', zIndex: 2,
-            background: 'linear-gradient(135deg, #f57c00 0%, #e53e3e 100%)',
-            clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
-          }}
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 0.85, scale: 1 }}
+          className="blob-animate absolute pointer-events-none select-none"
+          style={{ bottom: '20%', right: '5%', width: '20%', maxWidth: 340, zIndex: 2, animationDelay: '2.5s' }}
+          initial={{ opacity: 0, scale: 0.82 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.3, ease: 'easeOut', delay: 0.25 }}
           aria-hidden="true"
-        />
+        >
+          <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
+        </motion.div>
 
         {/* ── Bokeh particles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 3 }}>

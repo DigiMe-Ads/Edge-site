@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom'
 
 // ─── Link columns ─────────────────────────────────────────────────────────────
 const USEFUL_LINKS = [
-  { label: 'Who We Are',  href: '/about' },
-  { label: 'Our Purpose', href: '/purpose' },
-  { label: 'The Challenge', href: '/challenge' },
+  { label: 'Home',     href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
 ]
 const SOLUTION_LINKS = [
-  { label: 'Products',     href: '/services' },
-  { label: 'Our Core',     href: '/our-core' },
   { label: 'Our Founders', href: '/founders' },
+  { label: 'Contact Us',   href: '/contact' },
 ]
 
 const CONTACTS = [
@@ -43,17 +42,14 @@ export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden" style={{ background: '#0d1526' }}>
 
-      {/* ── Red angular accent — top right ── */}
+      {/* ── Red shape — top right ── */}
       <div
         className="absolute pointer-events-none select-none"
-        style={{
-          top: 0, right: 0, width: '22%', maxWidth: 280, aspectRatio: '1/1', zIndex: 1,
-          background: 'linear-gradient(135deg, #e53e3e 0%, #b71c1c 100%)',
-          clipPath: 'polygon(100% 0, 100% 100%, 0 0)',
-          opacity: 0.5,
-        }}
+        style={{ top: 0, right: 0, width: '22%', maxWidth: 280, zIndex: 1, opacity: 0.5, rotate: '90deg' }}
         aria-hidden="true"
-      />
+      >
+        <img src="/assets/shape-red-top.png" alt="" className="w-full h-auto" />
+      </div>
 
       {/* ── Content ── */}
       <div

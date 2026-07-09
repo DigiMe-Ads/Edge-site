@@ -76,12 +76,12 @@ export default function DeliveryMethodologySection() {
           </motion.div>
         </div>
 
-        {/* ── 4 step cards ── */}
+        {/* ── 4 step cards — connected as a flow ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              className="p-6 flex flex-col gap-0
+              className="relative p-6 flex flex-col gap-0
                          hover:bg-white/[0.07] transition-colors duration-300"
               style={CARD_STYLE}
               variants={fadeUp} custom={0.08 + i * 0.08}
@@ -112,6 +112,21 @@ export default function DeliveryMethodologySection() {
               <p className="text-white/45 text-[13px] leading-relaxed">
                 {step.desc}
               </p>
+
+              {/* Flow connector — links this step to the next (desktop only) */}
+              {i < STEPS.length - 1 && (
+                <div
+                  className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10
+                             items-center justify-center w-8 h-8 pointer-events-none"
+                  aria-hidden="true"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                       stroke="rgba(220,60,60,0.7)" strokeWidth="2.2"
+                       strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 12h15M13 6l6 6-6 6" />
+                  </svg>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
