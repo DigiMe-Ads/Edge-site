@@ -68,7 +68,7 @@ export default function PeopleDifferentiatorSection() {
               variants={fadeUp} custom={0.05}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              Who We Are
+              We believe the future of business depends on one enduring truth:
             </motion.p>
 
             {/* Heading */}
