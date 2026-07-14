@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const DOTS = [
   { size: 72,  top: '70%', left: '84%',  color: '#f0c040', opacity: 0.88, blur: 22, delay: 0,   duration: 4.5 },
@@ -131,8 +132,8 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <button className="btn-primary mr-3">Book a Consultation</button>
-            <button className="btn-secondary">Explore Our Services</button>
+            <Link to="/contact" className="btn-primary mr-3">Book a Consultation</Link>
+            <Link to="/services" className="btn-secondary">Explore Our Services</Link>
           </motion.div>
         </motion.div>
       </section>

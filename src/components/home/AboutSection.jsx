@@ -60,13 +60,13 @@ export default function AboutSection() {
             </motion.p>
 
             {/* Check list */}
-            <motion.ul
+            {/* <motion.ul
               className="space-y-3 mb-10"
               variants={fadeUp} custom={0.22} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
               {POINTS.map((pt) => (
                 <li key={pt} className="flex items-start gap-3">
-                  {/* Circle-check icon */}
+                  
                   <svg
                     className="w-[18px] h-[18px] flex-shrink-0 mt-[1px] text-red-600"
                     viewBox="0 0 20 20" fill="none"
@@ -81,7 +81,7 @@ export default function AboutSection() {
                   <span className="text-[14px] text-gray-600 leading-snug">{pt}</span>
                 </li>
               ))}
-            </motion.ul>
+            </motion.ul> */}
 
             {/* CTA button */}
             <motion.div

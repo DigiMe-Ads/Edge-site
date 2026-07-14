@@ -1,34 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
-
-// ─── Blog post data ───────────────────────────────────────────────────────────
-const POSTS = [
-  {
-    slug:    'gleams-steal-into-the-inner-sub',
-    title:   'Gleams steal into the inner sub',
-    date:    'March 5, 2023',
-    author:  'Admin',
-    excerpt: 'Wooded ladies she basket season age her uneasy saw. Discourse unwilling am no described dejection incommode.',
-    img:     '/assets/blogs/blog-1.png',
-  },
-  {
-    slug:    'strikes-the-upper-surface-impenetrable',
-    title:   'Strikes the upper surface impenetrable',
-    date:    'March 5, 2023',
-    author:  'Admin',
-    excerpt: 'Wooded ladies she basket season age her uneasy saw. Discourse unwilling am no described dejection incommode.',
-    img:     '/assets/blogs/blog-2.png',
-  },
-  {
-    slug:    'foliage-of-my-trees-and-but-a-few',
-    title:   'Foliage of my trees, and but a few',
-    date:    'March 5, 2023',
-    author:  'Admin',
-    excerpt: 'Wooded ladies she basket season age her uneasy saw. Discourse unwilling am no described dejection incommode.',
-    img:     '/assets/blogs/blog-3.png',
-  },
-]
+import { BLOG_POSTS as POSTS } from '../../data/blogPosts'
 
 // ─── Single post item ─────────────────────────────────────────────────────────
 function PostItem({ post, index }) {
@@ -66,10 +39,7 @@ function PostItem({ post, index }) {
 
       {/* Meta: BY: ADMIN / DATE */}
       <p className="text-[12px] font-medium text-gray-400 uppercase tracking-wide mb-3">
-        By:{' '}
-        <Link to="#" className="text-blue-600 hover:text-blue-700 transition-colors">
-          {post.author}
-        </Link>
+        By: <span className="text-gray-600 font-semibold">{post.author}</span>
         {' '}/ {post.date}
       </p>
 

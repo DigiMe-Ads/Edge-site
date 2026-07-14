@@ -117,11 +117,11 @@ export default function OurPurposeSection() {
             variants={fadeUp} custom={0.28}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
-            Four principles that spell out who we are —{' '}
+            Four principles that spell out who we are -{' '}
             <span className="text-red-500 font-bold">E</span>xcellence,{' '}
             <span className="text-red-500 font-bold">D</span>eep Partnership,{' '}
             <span className="text-red-500 font-bold">G</span>rowth, and{' '}
-            <span className="text-red-500 font-bold">E</span>mpowering Potential —
+            <span className="text-red-500 font-bold">E</span>mpowering Potential -
             the values behind the EDGE name.
           </motion.p>
         </div>

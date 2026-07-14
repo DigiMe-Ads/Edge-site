@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../../firebase'
 
 // ─── Contact details ──────────────────────────────────────────────────────────
 const CONTACTS = [
@@ -57,10 +59,30 @@ export default function ConsultationSection() {
   const [form, setForm] = useState({
     name: '', company: '', interest: 'Strategic Solutions', message: '',
   })
-  const [sent, setSent] = useState(false)
+  const [sent, setSent]           = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError]         = useState(null)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const handleSubmit = (e) => { e.preventDefault(); setSent(true) }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError(null)
+    try {
+      await addDoc(collection(db, 'contactSubmissions'), {
+        ...form,
+        reviewed: false,
+        createdAt: serverTimestamp(),
+      })
+      setSent(true)
+    } catch (err) {
+      setError('Something went wrong sending your request. Please try again.')
+      console.error(err)
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <section
@@ -203,15 +225,21 @@ export default function ConsultationSection() {
                   />
                 </div>
 
+                {error && (
+                  <p className="text-red-600 text-[13px] font-medium">{error}</p>
+                )}
+
                 {/* Submit + WhatsApp */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
+                    disabled={submitting}
                     className="flex-1 bg-gray-900 text-white text-[13px] font-bold
                                uppercase tracking-[0.14em] py-4
-                               hover:bg-red-600 transition-colors duration-300"
+                               hover:bg-red-600 transition-colors duration-300
+                               disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Schedule a Consultation
+                    {submitting ? 'Sending…' : 'Schedule a Consultation'}
                   </button>
                   <a
                     href={WHATSAPP_HREF}

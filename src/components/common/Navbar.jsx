@@ -222,8 +222,7 @@ export default function Navbar() {
         transition={{ duration: 0.55, ease: 'easeOut' }}
       >
         <div
-          className="relative w-full h-[72px] flex items-center"
-          style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+          className="relative w-full h-[72px] flex items-center px-4 xl:px-8"
         >
           {/* Hamburger — mobile/tablet only, hidden on desktop */}
           <div className="xl:hidden">

@@ -3,6 +3,7 @@ import './index.css'
 
 import HomePage        from './pages/HomePage'
 import BlogPage        from './pages/BlogPage'
+import BlogPostPage    from './pages/BlogPostPage'
 import ServicePage from './pages/ServicePage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
@@ -20,6 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/"             element={<HomePage />}        />
         <Route path="/blog"         element={<BlogPage />}        />
+        <Route path="/blog/:slug"   element={<BlogPostPage />}    />
         <Route path="/services"     element={<ServicePage />}     />
         <Route path="/contact"      element={<ContactPage />}     />
         <Route path="/about"        element={<AboutPage />}       />

@@ -3,10 +3,12 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
 import JobsManager from './JobsManager'
 import ApplicationsManager from './ApplicationsManager'
+import ContactSubmissionsManager from './ContactSubmissionsManager'
 
 const TABS = [
-  { key: 'jobs', label: 'Job Listings' },
-  { key: 'applications', label: 'Applications' },
+  { key: 'jobs', label: 'Job Listings', Component: JobsManager },
+  { key: 'applications', label: 'Applications', Component: ApplicationsManager },
+  { key: 'contact', label: 'Contact Messages', Component: ContactSubmissionsManager },
 ]
 
 export default function AdminDashboard({ user }) {
@@ -20,7 +22,7 @@ export default function AdminDashboard({ user }) {
             <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-red-500 mb-0.5">
               Admin
             </p>
-            <h1 className="font-display font-extrabold text-[1.3rem]">Careers Dashboard</h1>
+            <h1 className="font-display font-extrabold text-[1.3rem]">Admin Dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-white/50 text-[12.5px] hidden sm:inline">{user.email}</span>
@@ -53,7 +55,10 @@ export default function AdminDashboard({ user }) {
       </nav>
 
       <main className="max-w-6xl mx-auto px-6 lg:px-10 py-10">
-        {tab === 'jobs' ? <JobsManager /> : <ApplicationsManager />}
+        {(() => {
+          const Active = TABS.find((t) => t.key === tab).Component
+          return <Active />
+        })()}
       </main>
     </div>
   )
