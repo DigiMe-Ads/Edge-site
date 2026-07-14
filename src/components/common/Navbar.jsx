@@ -11,6 +11,7 @@ const LEFT_LINKS = [
 const RIGHT_LINKS = [
   { label: 'Services',     href: '/services', dropdown: null },
   { label: 'Our Founders', href: '/founders',  dropdown: null },
+  { label: 'Careers',      href: '/careers',   dropdown: null },
   { label: 'Contact Us',   href: '/contact',   dropdown: null },
 ]
 

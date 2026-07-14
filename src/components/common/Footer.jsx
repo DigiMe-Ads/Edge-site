@@ -9,6 +9,7 @@ const USEFUL_LINKS = [
 ]
 const SOLUTION_LINKS = [
   { label: 'Our Founders', href: '/founders' },
+  { label: 'Careers',      href: '/careers' },
   { label: 'Contact Us',   href: '/contact' },
 ]
 

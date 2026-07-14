@@ -7,6 +7,9 @@ import ServicePage from './pages/ServicePage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import FoundersPage from './pages/FoundersPage'
+import CareersPage from './pages/CareersPage'
+import JobDetailPage from './pages/JobDetailPage'
+import AdminPage from './pages/AdminPage'
 import ScrollToTop from './components/ui/ScrollToTop'
 
 
@@ -21,6 +24,9 @@ export default function App() {
         <Route path="/contact"      element={<ContactPage />}     />
         <Route path="/about"        element={<AboutPage />}       />
         <Route path="/founders"     element={<FoundersPage />}    />
+        <Route path="/careers"      element={<CareersPage />}     />
+        <Route path="/careers/:jobId" element={<JobDetailPage />} />
+        <Route path="/admin"        element={<AdminPage />}       />
       </Routes>
     </BrowserRouter>
   )
