@@ -97,13 +97,13 @@ export default function OurPurposeSection() {
 
         {/* ── Core Values header ── */}
         <div className="text-center mt-16 mb-10">
-          <motion.p
+          {/* <motion.p
             className="text-[11px] font-bold uppercase tracking-[0.28em] text-red-500 mb-3"
             variants={fadeUp} custom={0.16}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
           >
             What Drives Us
-          </motion.p>
+          </motion.p> */}
           <motion.h3
             className="font-display font-extrabold text-white leading-tight mb-4"
             style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)' }}
@@ -112,7 +112,7 @@ export default function OurPurposeSection() {
           >
             Our Core Values
           </motion.h3>
-          <motion.p
+          {/* <motion.p
             className="text-white/45 text-[13.5px] max-w-xl mx-auto leading-relaxed"
             variants={fadeUp} custom={0.28}
             initial="hidden" animate={inView ? 'visible' : 'hidden'}
@@ -123,7 +123,7 @@ export default function OurPurposeSection() {
             <span className="text-red-500 font-bold">G</span>rowth, and{' '}
             <span className="text-red-500 font-bold">E</span>mpowering Potential -
             the values behind the EDGE name.
-          </motion.p>
+          </motion.p> */}
         </div>
 
         {/* ── Bottom 4 smaller cards — letter badges spell E · D · G · E ── */}
