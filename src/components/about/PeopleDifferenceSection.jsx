@@ -131,7 +131,7 @@ export default function PeopleDifferentiatorSection() {
             </motion.p>
 
             {/* Two-column pillar cards */}
-            <motion.div
+            {/* <motion.div
               className="grid grid-cols-2 gap-4"
               variants={fadeUp} custom={0.3}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
@@ -150,7 +150,7 @@ export default function PeopleDifferentiatorSection() {
                   </p>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </div>
 
         </div>

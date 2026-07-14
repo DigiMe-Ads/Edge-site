@@ -15,24 +15,28 @@ const TOP_CARDS = [
   },
 ]
 
-// ─── Bottom four value cards ──────────────────────────────────────────────────
+// ─── Bottom four value cards — the initials spell out E · D · G · E ────────────
 const VALUE_CARDS = [
   {
+    letter: 'E',
     icon: <PulseIcon />,
     title: 'Excellence with Impact',
     desc: 'Deliver measurable outcomes that strengthen performance',
   },
   {
+    letter: 'D',
     icon: <PartnerIcon />,
     title: 'Deep Partnership',
     desc: 'Collaborate with shared ownership and clear outcomes',
   },
   {
+    letter: 'G',
     icon: <BulbIcon />,
     title: 'Growth through Innovation',
     desc: 'Design forward-thinking, future-ready solutions',
   },
   {
+    letter: 'E',
     icon: <ArrowUpIcon />,
     title: 'Empowering Potential',
     desc: 'Unlock capability to drive performance and execution',
@@ -65,25 +69,6 @@ export default function OurPurposeSection() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 xl:px-16">
 
-        {/* ── Header ── */}
-        <div className="text-center mb-14">
-          <motion.h2
-            className="font-display font-extrabold text-white leading-tight mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}
-            variants={fadeUp} custom={0}
-            initial="hidden" animate={inView ? 'visible' : 'hidden'}
-          >
-            Our Purpose
-          </motion.h2>
-          <motion.p
-            className="text-white/50 text-[14px] max-w-lg mx-auto leading-relaxed"
-            variants={fadeUp} custom={0.08}
-            initial="hidden" animate={inView ? 'visible' : 'hidden'}
-          >
-            Transforming human potential and organizational capability into business excellence.
-          </motion.p>
-        </div>
-
         {/* ── Top 2 large cards ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
           {TOP_CARDS.map((card, i) => (
@@ -110,23 +95,61 @@ export default function OurPurposeSection() {
           ))}
         </div>
 
-        {/* ── Bottom 4 smaller cards ── */}
+        {/* ── Core Values header ── */}
+        <div className="text-center mt-16 mb-10">
+          <motion.p
+            className="text-[11px] font-bold uppercase tracking-[0.28em] text-red-500 mb-3"
+            variants={fadeUp} custom={0.16}
+            initial="hidden" animate={inView ? 'visible' : 'hidden'}
+          >
+            What Drives Us
+          </motion.p>
+          <motion.h3
+            className="font-display font-extrabold text-white leading-tight mb-4"
+            style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)' }}
+            variants={fadeUp} custom={0.22}
+            initial="hidden" animate={inView ? 'visible' : 'hidden'}
+          >
+            Our Core Values
+          </motion.h3>
+          <motion.p
+            className="text-white/45 text-[13.5px] max-w-xl mx-auto leading-relaxed"
+            variants={fadeUp} custom={0.28}
+            initial="hidden" animate={inView ? 'visible' : 'hidden'}
+          >
+            Four principles that spell out who we are —{' '}
+            <span className="text-red-500 font-bold">E</span>xcellence,{' '}
+            <span className="text-red-500 font-bold">D</span>eep Partnership,{' '}
+            <span className="text-red-500 font-bold">G</span>rowth, and{' '}
+            <span className="text-red-500 font-bold">E</span>mpowering Potential —
+            the values behind the EDGE name.
+          </motion.p>
+        </div>
+
+        {/* ── Bottom 4 smaller cards — letter badges spell E · D · G · E ── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {VALUE_CARDS.map((card, i) => (
             <motion.div
               key={card.title}
               className="p-6 group hover:bg-white/[0.09] transition-colors duration-300"
               style={{ background: CARD_BG, border: CARD_BORDER }}
-              variants={fadeUp} custom={0.22 + i * 0.07}
+              variants={fadeUp} custom={0.34 + i * 0.07}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              {/* Icon */}
-              <div className="mb-4">
+              {/* Letter badge + icon */}
+              <div className="flex items-center gap-3 mb-4">
+                <span
+                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center font-display font-extrabold text-white bg-red-600 group-hover:scale-110 transition-transform duration-300"
+                  style={{ fontSize: '1.05rem' }}
+                >
+                  {card.letter}
+                </span>
                 {card.icon}
               </div>
               {/* Title */}
               <h4 className="font-display font-bold text-white text-[0.9rem] mb-2 leading-snug">
-                {card.title}
+                <span className="text-red-500">{card.title.charAt(0)}</span>
+                {card.title.slice(1)}
               </h4>
               {/* Desc */}
               <p className="text-white/45 text-[12.5px] leading-relaxed">

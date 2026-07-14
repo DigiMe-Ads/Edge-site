@@ -1,7 +1,7 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 
-// ─── 4 step cards ─────────────────────────────────────────────────────────────
+// ─── 4 step data ──────────────────────────────────────────────────────────────
 const STEPS = [
   {
     num:   '01',
@@ -40,15 +40,25 @@ const fadeUp = {
   }),
 }
 
-// ─── Card background / border colours ────────────────────────────────────────
 const CARD_STYLE = {
   background: 'rgba(255,255,255,0.04)',
   border:     '1px solid rgba(255,255,255,0.08)',
 }
 
+const AUTO_ADVANCE_MS = 4500
+
 export default function DeliveryMethodologySection() {
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [active, setActive] = useState(0)
+
+  // Auto-advance through the steps once the section is in view; restarts
+  // whenever the user manually selects a step.
+  useEffect(() => {
+    if (!inView) return
+    const t = setTimeout(() => setActive((a) => (a + 1) % STEPS.length), AUTO_ADVANCE_MS)
+    return () => clearTimeout(t)
+  }, [inView, active])
 
   return (
     <section
@@ -76,59 +86,90 @@ export default function DeliveryMethodologySection() {
           </motion.div>
         </div>
 
-        {/* ── 4 step cards — connected as a flow ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.num}
-              className="relative p-6 flex flex-col gap-0
-                         hover:bg-white/[0.07] transition-colors duration-300"
-              style={CARD_STYLE}
-              variants={fadeUp} custom={0.08 + i * 0.08}
-              initial="hidden" animate={inView ? 'visible' : 'hidden'}
-            >
-              {/* Top area: number + icon */}
-              <div className="flex items-start justify-between mb-8">
+        {/* ── Interactive stepper ── */}
+        <motion.div
+          className="relative flex items-start justify-between mb-3"
+          variants={fadeUp} custom={0.1}
+          initial="hidden" animate={inView ? 'visible' : 'hidden'}
+        >
+          <div className="absolute top-5 left-0 right-0 h-px bg-white/10" aria-hidden="true" />
+          {STEPS.map((step, i) => {
+            const isActive = active === i
+            const isPast   = i < active
+            return (
+              <button
+                key={step.num}
+                onClick={() => setActive(i)}
+                className="relative z-10 flex flex-col items-center gap-3 flex-1 group cursor-pointer"
+                aria-label={`Show step ${i + 1}: ${step.title}`}
+              >
                 <span
-                  className="font-display font-extrabold select-none"
-                  style={{ fontSize: '2rem', color: 'rgba(220,60,60,0.35)' }}
+                  className={`w-10 h-10 flex items-center justify-center font-display font-bold text-[13px] transition-all duration-300 ${
+                    isActive
+                      ? 'bg-red-600 text-white scale-110'
+                      : isPast
+                      ? 'bg-red-600/30 text-white'
+                      : 'bg-white/5 text-white/40 group-hover:bg-white/10'
+                  }`}
+                  style={{ border: isActive ? 'none' : '1px solid rgba(255,255,255,0.15)' }}
                 >
                   {step.num}
                 </span>
-                <div className="text-white/25 mt-1">
-                  {step.icon}
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="mb-5" style={{ height: 1, background: 'rgba(255,255,255,0.08)' }} />
-
-              {/* Title */}
-              <h3 className="font-display font-extrabold text-white text-[1.05rem] mb-2">
-                {step.title}
-              </h3>
-
-              {/* Desc */}
-              <p className="text-white/45 text-[13px] leading-relaxed">
-                {step.desc}
-              </p>
-
-              {/* Flow connector — links this step to the next (desktop only) */}
-              {i < STEPS.length - 1 && (
-                <div
-                  className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10
-                             items-center justify-center w-8 h-8 pointer-events-none"
-                  aria-hidden="true"
+                <span
+                  className={`text-[11.5px] font-semibold uppercase tracking-wider transition-colors duration-300 hidden sm:block ${
+                    isActive ? 'text-white' : 'text-white/35 group-hover:text-white/60'
+                  }`}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                       stroke="rgba(220,60,60,0.7)" strokeWidth="2.2"
-                       strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 12h15M13 6l6 6-6 6" />
-                  </svg>
+                  {step.title}
+                </span>
+                {/* Progress bar — fills while this step is active */}
+                <div className="w-full max-w-[80px] h-[2px] bg-white/5 overflow-hidden hidden sm:block">
+                  {isActive && (
+                    <motion.div
+                      key={active}
+                      className="h-full bg-red-500"
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: AUTO_ADVANCE_MS / 1000, ease: 'linear' }}
+                    />
+                  )}
                 </div>
-              )}
+              </button>
+            )
+          })}
+        </motion.div>
+
+        {/* ── Detail panel — swaps content on step change ── */}
+        <div className="mb-14 mt-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              className="p-8 lg:p-10 flex flex-col sm:flex-row items-start gap-6"
+              style={CARD_STYLE}
+            >
+              <div
+                className="flex-shrink-0 w-16 h-16 flex items-center justify-center text-red-500"
+                style={{ background: 'rgba(220,60,60,0.12)' }}
+              >
+                {STEPS[active].icon}
+              </div>
+              <div>
+                <p className="text-red-500 font-display font-extrabold text-[0.85rem] uppercase tracking-[0.2em] mb-2">
+                  Step {STEPS[active].num}
+                </p>
+                <h3 className="font-display font-extrabold text-white text-[1.5rem] mb-3">
+                  {STEPS[active].title}
+                </h3>
+                <p className="text-white/55 text-[14.5px] leading-relaxed max-w-xl">
+                  {STEPS[active].desc}
+                </p>
+              </div>
             </motion.div>
-          ))}
+          </AnimatePresence>
         </div>
 
         {/* ── Bottom badges ── */}
@@ -139,7 +180,6 @@ export default function DeliveryMethodologySection() {
         >
           {BADGES.map((badge) => (
             <div key={badge} className="flex items-center gap-2.5">
-              {/* Circle-check icon */}
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                    stroke="rgba(220,60,60,0.7)" strokeWidth="1.6"
                    strokeLinecap="round" strokeLinejoin="round">
